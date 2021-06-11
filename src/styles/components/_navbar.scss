@@ -1,0 +1,56 @@
+.nav {
+  width: 100%;
+  padding: 0.1em 1em;
+  color: inherit;
+  background-color: #fff;
+  border-bottom: 2px dotted $mid-grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include for-phone-only {
+    flex-direction: column;
+  }
+
+  .nav__logo-link {
+    color: inherit;
+    font-family: $text-font-stack;
+    text-decoration: none;
+
+    p {
+      @include font-size(2rem);
+
+      font-weight: $fw-bold;
+      letter-spacing: 1px;
+    }
+  }
+
+  .nav__links-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    text-align: center;
+
+    a {
+      font-size: 1.3rem;
+      text-decoration: underline;
+      color: inherit;
+      margin-right: 1em;
+      @include for-phone-only {
+        margin: 1em;
+      }
+    }
+
+    a:visited {
+      text-decoration: none;
+    }
+
+    a:active {
+      outline: 3px dotted #322f2b;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}

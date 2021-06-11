@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+.footer {
+  width: 100vw;
+  background-color: rgb(245, 245, 245);
+  padding: 1em;
+  border-top: 2px dotted $mid-grey;
+  margin-top: 2em;
+}

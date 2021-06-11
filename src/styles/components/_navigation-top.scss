@@ -1,0 +1,30 @@
+@keyframes moveUp {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.btn-top {
+  background-color: $dark;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  display: inline-flex;
+  transition: transform 250ms ease;
+
+  svg {
+    color: #fff;
+  }
+
+  &:hover {
+    animation: moveUp 2s forwards;
+  }
+}
