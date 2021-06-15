@@ -1,4 +1,5 @@
 .accent {
   font-weight: $fw-bold;
-  color: $dark;
+  color: var(--text-color);
+  font-style: italic;
 }

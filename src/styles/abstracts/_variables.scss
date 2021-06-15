@@ -4,25 +4,33 @@
 
 /// Regular font family
 /// @type List
-$text-font-stack: 'Archivo', sans-serif !default;
-$title-font-stack: 'DM Serif Display', serif !default;
+$text-font-stack: 'Courier Prime', monospace !default;
+$title-font-stack: 'Courier Prime', monospace !default;
 
 /// Code (monospace) font family
 /// @type List
 $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
 
-$fw-bold: 700;
 $fw-regular: 400;
 
+$fw-bold: 700;
+
 /// Copy text color
-/// @type Color
-$text-color: rgb(34, 34, 34) !default;
+/// @type Color Light
+$bg-color-light: #f2f2f2;
+$primary-color-light: #083d77;
+$secondary-color-light: #f78764;
+$accent-color-light: #f4d35e;
+$link-color-light: #da4167;
+$text-color: rgb(0, 0, 0) !default;
 
-/// Main brand color
-/// @type Color
-$brand-color: rgb(229, 0, 80) !default;
+/// @type Color Dark
+$primary-color-dark: #cde77f;
+$secondary-color-dark: #3083dc;
+$bg-color-dark: #000;
+$text-color-dark: #fff;
 
-/// Light grey
+/// GreyScale
 /// @type Color
 $light-grey: rgb(237, 237, 237) !default;
 
@@ -36,7 +44,7 @@ $dark-grey: rgb(68, 68, 68) !default;
 $dark: #322f2b;
 /// Container's maximum width
 /// @type Length
-$max-width: 980px !default;
+$max-width: 1000px !default;
 
 /// Breakpoints map
 /// @prop {String} keys - Keys are identifiers mapped to a given length
@@ -52,3 +60,17 @@ $breakpoints: (
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
 $base-url: '/assets/' !default;
+
+// Animations
+
+@keyframes transitionIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}

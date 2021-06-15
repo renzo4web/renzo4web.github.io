@@ -1,81 +1,38 @@
 import { view } from '../utils/view';
 import { Project } from '../components/Project';
 
-export const Projects = () => {
-  const projectsArr = getProjects();
+export const Projects = async () => {
+  const data = await getProjects();
 
-  document.title = 'Projects 📘';
+  let portfolioContent = [];
+
+  for (const portfolioSection in data) {
+    if (Object.prototype.hasOwnProperty.call(data, portfolioSection)) {
+      portfolioContent = [...portfolioContent, data[portfolioSection]];
+    }
+  }
+  const colors = ['#E5D5C5', '#bfbfbf', '#191919', '#7f7f7f', '#8c8c8c'];
+
+  document.title = 'Renzo | Projects';
   view.innerHTML = `
-    <section class="projects container">
-    <h2>Proyectos</h2>
-            ${projectsArr.map(Project).join('')}
+    <section class="projects">
+            ${portfolioContent
+              .flat(1)
+              .map((pj, i) => Project(pj, i, colors))
+              .join('')}
     </section>
     `;
 };
 
-const getProjects = () => {
-  const projects = [
-    {
-      title: 'Pacman',
-      emoji: 'video-game',
-      img: {
-        url:
-          'https://camo.githubusercontent.com/a0252e7bd3bce5bd5982361f66fdb211b5c967a2a222f2080eeea63641597902/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f747572626f70696c612f696d6167652f75706c6f61642f76313631363238313438312f657a6769662e636f6d2d6769662d6d616b65725f6f6e69306e732e676966',
-        alt: 'Pacmna Game',
-      },
-      tecno: 'loremajdf OISLdfjhasoihdoiashdn asoidhoiashdas',
-      solution: 'dkkldkasdskldkklsklsklsaklasdas',
-      problem: 'doiasujdiosuadi',
-    },
-    {
-      title: 'Pacman',
-      emoji: 'video-game',
-      img: {
-        url:
-          'https://camo.githubusercontent.com/a0252e7bd3bce5bd5982361f66fdb211b5c967a2a222f2080eeea63641597902/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f747572626f70696c612f696d6167652f75706c6f61642f76313631363238313438312f657a6769662e636f6d2d6769662d6d616b65725f6f6e69306e732e676966',
-        alt: 'Pacmna Game',
-      },
-      tecno: 'loremajdf OISLdfjhasoihdoiashdn asoidhoiashdas',
-      solution: 'dkkldkasdskldkklsklsklsaklasdas',
-      problem: 'doiasujdiosuadi',
-    },
-    {
-      title: 'Pacman',
-      emoji: 'video-game',
-      img: {
-        url:
-          'https://camo.githubusercontent.com/a0252e7bd3bce5bd5982361f66fdb211b5c967a2a222f2080eeea63641597902/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f747572626f70696c612f696d6167652f75706c6f61642f76313631363238313438312f657a6769662e636f6d2d6769662d6d616b65725f6f6e69306e732e676966',
-        alt: 'Pacmna Game',
-      },
-      tecno: 'loremajdf OISLdfjhasoihdoiashdn asoidhoiashdas',
-      solution: 'dkkldkasdskldkklsklsklsaklasdas',
-      problem: 'doiasujdiosuadi',
-    },
-    {
-      title: 'Pacman',
-      emoji: 'video-game',
-      img: {
-        url:
-          'https://camo.githubusercontent.com/a0252e7bd3bce5bd5982361f66fdb211b5c967a2a222f2080eeea63641597902/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f747572626f70696c612f696d6167652f75706c6f61642f76313631363238313438312f657a6769662e636f6d2d6769662d6d616b65725f6f6e69306e732e676966',
-        alt: 'Pacmna Game',
-      },
-      tecno: 'loremajdf OISLdfjhasoihdoiashdn asoidhoiashdas',
-      solution: 'dkkldkasdskldkklsklsklsaklasdas',
-      problem: 'doiasujdiosuadi',
-    },
-    {
-      title: 'Pacman',
-      emoji: 'video-game',
-      img: {
-        url:
-          'https://camo.githubusercontent.com/a0252e7bd3bce5bd5982361f66fdb211b5c967a2a222f2080eeea63641597902/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f747572626f70696c612f696d6167652f75706c6f61642f76313631363238313438312f657a6769662e636f6d2d6769662d6d616b65725f6f6e69306e732e676966',
-        alt: 'Pacmna Game',
-      },
-      tecno: 'loremajdf OISLdfjhasoihdoiashdn asoidhoiashdas',
-      solution: 'dkkldkasdskldkklsklsklsaklasdas',
-      problem: 'doiasujdiosuadi',
-    },
-  ];
-
-  return projects;
+export const getProjects = async (content) => {
+  try {
+    const result = await fetch('https://api.npoint.io/3e306dabd7dfc814de43');
+    const data = await result.json();
+    if (!content) {
+      return data;
+    }
+    return data[content];
+  } catch (e) {
+    console.warn(e);
+  }
 };

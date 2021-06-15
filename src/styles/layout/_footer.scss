@@ -2,9 +2,20 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 .footer {
-  width: 100vw;
-  background-color: rgb(245, 245, 245);
-  padding: 1em;
-  border-top: 2px dotted $mid-grey;
-  margin-top: 2em;
+  padding: 1em 0;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  color: var(--bg-color);
+  background-color: var(--text-color);
+  z-index: 5;
+
+  a:hover {
+    color: var(--secondary);
+  }
+
+  .footer-links {
+    margin: 0 1em;
+  }
 }

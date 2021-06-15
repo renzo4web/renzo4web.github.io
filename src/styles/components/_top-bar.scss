@@ -1,0 +1,16 @@
+.top-bar {
+  height: 10px;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgb(0, 31, 84);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 31, 84, 1) 0%,
+      rgba(109, 1, 178, 1) 49%,
+      rgba(0, 30, 255, 1) 100%
+    );
+}

@@ -2,3 +2,39 @@
 // When having several themes, this file contains everything related to the
 // default one.
 // -----------------------------------------------------------------------------
+
+:root {
+  --primary: #{$primary-color-light};
+  --secondary: #{$secondary-color-light};
+  --bg-color: #{$bg-color-light};
+  --text-color: #{$text-color};
+  --link-color: #{$link-color-light};
+}
+
+.dark-mode:root {
+  --primary: #{$primary-color-dark};
+  --secondary: #{$secondary-color-dark};
+  --bg-color: #{$bg-color-dark};
+  --text-color: #{$text-color-dark};
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary: #{$primary-color-light};
+    --secondary: #{$secondary-color-light};
+    --bg-color: #{$bg-color-light};
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #{$primary-color-dark};
+    --secondary: #{$secondary-color-dark};
+    --bg-color: #{$bg-color-dark};
+    --text-color: #{$text-color-dark};
+  }
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}

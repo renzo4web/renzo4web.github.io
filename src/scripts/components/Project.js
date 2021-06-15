@@ -1,30 +1,24 @@
-export const Project = (project) => {
+export const Project = (project, i) => {
   const { title, emoji, img, tecno, solution, problem } = project;
 
   const html = `
-            <article class="project">
-                <h4 class="project__title">
-                    <span class="ec ec-${emoji}"></span>
-                    ${title}
-                </h4>
-                <div class="project__content">
+            <article  class="project">
+             <div class="project__content">
+                <h4 class="project__title">${title}</h4>
+                <ul class="project__tecnologies">
+                        ${tecno.map((tec) => `<li>${tec}-</li>`).join('')}
+                </ul>  
                     <p class="project__text">
-                        <strong>Problem,</strong>
+                        <strong>Why?</strong>
                        ${problem}
                     </p>
                     <p class="project__text">
-                        <strong>Solution,</strong>
+                        <strong>Solution:</strong>
                         ${solution}
                     </p>
-                    <p class="project__text">
-                        <strong>Technologies,</strong>
-                        ${tecno}.
-                    </p>
-                </div>
-                <img class="project__img" src="${img.url}" alt="${img.alt}">
+                    <a aria-label="Live demo" class="project__link" href="#">Live Demo</a>
+             </div>
             </article>
-
-
   `;
 
   return html;

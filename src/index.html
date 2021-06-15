@@ -10,27 +10,69 @@
 
 
     <title>Renzo</title>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/67a68e3d72.js" crossorigin="anonymous"></script>
-    <link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tiaanduplessis/wenk/master/dist/wenk.css">
+
 </head>
 
 <body>
 
+
     <nav id='top' class="nav">
-        <a aria-current="page" href="#/" class="nav__logo-link">
-            <p class="nav__logo-text">
-                {Renzo Barrios}
-            </p>
-        </a>
+
         <ul class="nav__links-container">
-            <a aria-current="page"  class="nav__link" href="#/work-gallery">Work</a>
-            <a aria-current="page"  class="nav__link" href="#/contact">Contact</a>
+            <li class="nav__item">
+                <a aria-current="page" href="#/" class="nav__logo-link">
+                    <p class="nav__logo-text">
+                        renzo4web
+                    </p>
+                </a>
+            </li>
+            <li class="nav__item">
+                <a aria-current="page" class="nav__link" href="#/work-gallery">Work</a>
+
+            </li>
         </ul>
+
+
+
+        <div class="mobile-show hide">
+            <ul class="mobile-navigation">
+                <li class="nav-item nav-item__link">
+                    <a href="#/">-renzo-</a>
+                </li>
+            </ul>
+            <div class="mobile-menu-controls">
+                <img class="mobile-icon-close" src="https://cdn.shopify.com/s/files/1/1091/4616/files/close-icon.svg?v=1593782883">
+
+                <img class="mobile-icon-menu" alt="menu-icon" src="https://cdn.shopify.com/s/files/1/1091/4616/files/menu-icon.svg?v=1593782532">
+            </div>
+            <ul class="mobile-menu-list">
+                <li class="mobile-nav-item">
+                    <a aria-current="page" class="nav__link" href="#/work-gallery">Work</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a aria-current="page" class="nav__link" href="#/contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn-theme" aria-label="color theme">
+            <svg id="svg-theme" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+        </button>
     </nav>
 
-    <div class="container" id="root"></div>
+    <div id="root">
+
+
+
+    </div>
 
 
 
@@ -42,11 +84,15 @@
     </a>
 
     <footer class="footer">
-        <a class="" href="https://twitter.com/renzo4web" title="Follow me in Twitter" target="_blank">
-            <i class="fa fa-twitter"></i></a>
-        <a class="text-gray-400 text-2xl pr-1" href="https://github.com/renzo4web" title="Check my code" target="_blank">
-            <i class="fa fa-github"></i>
-        </a>
+        <p>
+            Reach out:
+            <a rel="noopener noreferrer" href="mailto:w3renzo@gmail.com">w3renzo@gmail.com</a>
+        </p>
+
+        <div class="footer-links">
+            © 2021
+        </div>
+
     </footer>
 </body>
 

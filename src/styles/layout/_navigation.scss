@@ -1,0 +1,9 @@
+@include for-phone-only {
+  .nav .mobile-show {
+    display: block !important;
+  }
+
+  .nav .nav__links-container {
+    display: none !important;
+  }
+}

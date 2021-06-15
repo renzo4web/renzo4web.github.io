@@ -1,14 +1,25 @@
 .nav {
-  width: 100%;
-  padding: 0.1em 1em;
+  width: 90%;
   color: inherit;
-  background-color: #fff;
-  border-bottom: 2px dotted $mid-grey;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  background-color: inherit;
+  margin: 1.5em auto;
+  z-index: 4;
   @include for-phone-only {
     flex-direction: column;
+  }
+
+  button.btn-theme {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: 0;
+    right: 0;
+    background-color: inherit;
+
+    .dark-mode & {
+      background-color: var(--text-color);
+    }
   }
 
   .nav__logo-link {
@@ -17,24 +28,46 @@
     text-decoration: none;
 
     p {
-      @include font-size(2rem);
+      @include font-size(1.3rem);
 
       font-weight: $fw-bold;
       letter-spacing: 1px;
+
+      &::before {
+        content: '>';
+        font-weight: $fw-bold;
+      }
     }
   }
 
   .nav__links-container {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
     text-align: center;
 
+    .nav__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //   border-left: 1px solid var(--text-color);
+      //   border-right: 1px solid var(--text-color);
+
+      &:hover {
+        background-color: var(--text-color);
+        color: var(--bg-color);
+      }
+    }
+
     a {
-      font-size: 1.3rem;
+      @include font-size(1.3rem);
+
       text-decoration: underline;
+      font-weight: $fw-regular;
+      text-transform: uppercase;
+      margin: 0.5rem;
       color: inherit;
-      margin-right: 1em;
       @include for-phone-only {
         margin: 1em;
       }
@@ -45,12 +78,13 @@
     }
 
     a:active {
-      outline: 3px dotted #322f2b;
+      outline: 3px dotted var(--text-color);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: none;
+      color: var(--link-color);
     }
   }
 }

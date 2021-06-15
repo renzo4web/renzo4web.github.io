@@ -3,35 +3,251 @@
 // -----------------------------------------------------------------------------
 
 body {
-  background-color: #faebd7;
+  background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   overflow-x: hidden;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .header {
+  margin: 0 auto;
+  animation: transitionIn 0.75s;
   width: 100%;
   font-family: $text-font-stack;
-  text-align: center;
+  transition: all 250ms ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 1em;
+
+  #eyes {
+    @include font-size(5rem);
+
+    text-align: center;
+    margin: 0.5em auto;
+  }
+  @include for-desktop-up {
+    max-width: 1000px;
+  }
   @include for-tablet-landscape-up {
-    text-align: left;
+    text-align: center;
+    max-width: 45ch;
+    padding: 0;
   }
 
   h1 {
-    @include font-size(5rem);
+    @include font-size(2rem);
 
     font-family: $title-font-stack;
+    font-weight: $fw-bold;
     letter-spacing: 2px;
     margin: 0;
   }
 
+  small {
+    font-style: italic;
+    font-weight: $fw-bold;
+  }
+
   p {
-    @include font-size(2rem);
+    @include font-size(1.3rem);
 
     font-weight: $fw-regular;
+    text-align: left;
     margin: 1em 0;
-    //   font-size: ;
+
+    a {
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: var(--text-color);
+    }
+  }
+
+  .header__btns {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .header__btn {
+    display: block;
+    transform: scale(1);
+    font-size: 1rem;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    padding: 10px 25px;
+    margin: 1em;
+    margin-left: 0;
+    transition: all 250ms;
+    @include for-tablet-landscape-up {
+      margin: 0;
+      margin-right: 1em;
+    }
+
+    &:last-child {
+      background-color: var(--secondary);
+    }
+  }
+
+  .header__btn:hover {
+    background-color: var(--primary);
+    transform: scale(1.1);
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-4165px);
+  }
+}
+
+.marquee {
+  max-width: 46rem;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 4em;
+
+  div {
+    width: 200vw;
+    min-width: 8330px;
+    background: url('https://openmoji.org/data/black/svg/1F440.svg') 0 center repeat-x
+      rgb(255, 255, 255);
+    height: 2rem;
+    animation: marquee 60s linear infinite;
+  }
+}
+
+.about-me {
+  width: 100%;
+  color: var(--text-color);
+  margin: 0 auto;
+  padding: 0 1em;
+  border-right: 1px solid #000;
+
+  form {
+    margin: 1em 0;
+  }
+
+  span {
+    @include font-size(1.4rem);
+
+    display: inline-block;
+    background-color: var(--secondary);
+    padding: 1px 10px;
+    border-radius: 7rem;
+
+    &.javascript-txt {
+      color: yellow;
+    }
+
+    &.react-txt {
+      color: #3583d8;
+    }
+  }
+}
+
+.projects.home-projects {
+  margin: 1em auto;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  row-gap: 1em;
+  grid-template-columns: 1fr;
+
+  .section-heading {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  .project {
+    flex-direction: column;
+    background-color: var(--text-color);
+  }
+
+  .project__link {
+    text-align: right;
+    background-color: var(--bg-color);
+    padding: 0.3em 1em;
+    font-size: 1rem;
+  }
+
+  .project__title {
+    color: var(--bg-color);
+  }
+
+  .project__text {
+    color: var(--bg-color);
+    @include font-size(1rem);
+  }
+
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(2, 1fr);
+
+    .project {
+      flex-direction: row;
+      align-items: center;
+      max-width: 46rem;
+      margin: 0;
+
+      .project__content {
+        padding: 1em;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.portfolio-header {
+  h3 {
+    margin-right: 1em;
+  }
+
+  padding: 1em;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+
+  .showcase-controls {
+    button {
+      background-color: var(--secondary);
+      transition: background 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        background-color: var(--primary);
+        color: var(--bg-color);
+      }
+    }
+  }
+}
+
+#root .header,
+#root .projects.home-projects,
+#root .portfolio-header,
+#root .about-me {
+  max-width: 46rem;
+  @include for-tablet-landscape-up {
+    padding: 0;
   }
 }

@@ -1,8 +1,25 @@
 .projects {
+  animation: transitionIn 0.75s;
+  width: 100%;
+  padding: 2em;
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  @include for-tablet-landscape-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: min-content;
+    place-content: center;
+    column-gap: 1em;
+    row-gap: 1em;
+  }
 
   h2 {
     @include font-size(3rem);
+
+    display: block;
+    grid-column: 1 /-1;
   }
 }
 
@@ -10,29 +27,69 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.2rem;
+  color: #fff;
+  overflow: hidden;
+  background-color: #ccc;
+  @include for-tablet-portrait-up {
+    &.main {
+      grid-column: 2 /-1;
+      grid-row-start: 1;
+      overflow: hidden;
+    }
+  }
 
   .project__title {
-    font-size: 2rem;
+    @include font-size(2rem);
+
     text-align: left;
     align-self: flex-start;
     margin: 0;
-    margin-top: 2em;
   }
 
   img {
-    box-shadow: 0 0 10px;
     background-color: grey;
     width: 100%;
   }
 
   .project__content {
-    margin: 1em 0;
-    margin-top: 0;
+    width: 100%;
+    padding: 1em;
+    margin-bottom: auto;
+
+    .project__link {
+      text-align: right;
+      background-color: var(--bg-color);
+      padding: 0.3em 1em;
+
+      &:hover {
+        color: var(--text-color);
+      }
+    }
+
+    .project__tecnologies {
+      display: flex;
+      margin: 0.5em 0;
+      color: var(--bg-color);
+      font-size: 1rem;
+      font-weight: $fw-regular;
+      opacity: 0.9;
+      text-transform: uppercase;
+
+      &::before {
+        content: '<>-';
+        position: relative;
+      }
+    }
   }
 
   .project__text {
+    @include font-size(1.3rem);
+
+    color: var(--text-color);
+    width: 100%;
     margin: 1em 0;
+    word-break: break-all;
+    opacity: 0.7;
 
     strong {
       color: inherit;

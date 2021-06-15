@@ -1,0 +1,9 @@
+.bio-length {
+  @include font-size(1rem);
+
+  text-align: left;
+
+  .form-group {
+    display: inline-block;
+  }
+}

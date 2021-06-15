@@ -1,0 +1,79 @@
+{
+    "data": [
+        {
+            "title": "Pacman",
+            "emoji": "video-game",
+            "img": {
+                "url": "https://images.unsplash.com/photo-1623278040745-42f33a1e8db7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                "alt": "Pacmna Game"
+            },
+            "tecno": [
+                "react",
+                "api",
+                "node"
+            ],
+            "solution": "dkkldkasdskldkklsklsklsaklasdas",
+            "problem": "doiasujdiosuadi"
+        },
+        {
+            "title": "Pacman",
+            "emoji": "video-game",
+            "img": {
+                "url": "https://images.unsplash.com/photo-1623278040745-42f33a1e8db7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                "alt": "Pacmna Game"
+            },
+            "tecno": [
+                "react",
+                "api",
+                "node"
+            ],
+            "solution": "dkkldkasdskldkklsklsklsaklasdas",
+            "problem": "doiasujdiosuadi"
+        },
+        {
+            "title": "Pacman",
+            "emoji": "video-game",
+            "img": {
+                "url": "https://images.unsplash.com/photo-1623278040745-42f33a1e8db7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                "alt": "Pacmna Game"
+            },
+            "tecno": [
+                "react",
+                "api",
+                "node"
+            ],
+            "solution": "dkkldkasdskldkklsklsklsaklasdas",
+            "problem": "doiasujdiosuadi"
+        },
+        {
+            "title": "Pacman",
+            "emoji": "video-game",
+            "img": {
+                "url": "https://images.unsplash.com/photo-1623278040745-42f33a1e8db7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                "alt": "Pacmna Game"
+            },
+            "tecno": [
+                "react",
+                "api",
+                "node"
+            ],
+            "solution": "dkkldkasdskldkklsklsklsaklasdas",
+            "problem": "doiasujdiosuadi"
+        },
+        {
+            "title": "Pacman",
+            "emoji": "video-game",
+            "img": {
+                "url": "https://images.unsplash.com/photo-1623278040745-42f33a1e8db7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                "alt": "Pacmna Game"
+            },
+            "tecno": [
+                "react",
+                "api",
+                "node"
+            ],
+            "solution": "dkkldkasdskldkklsklsklsaklasdas",
+            "problem": "doiasujdiosuadi"
+        }
+    ]
+}

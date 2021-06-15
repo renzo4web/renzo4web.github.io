@@ -10,10 +10,32 @@ html {
   font-family: $text-font-stack;
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 p,
 ul {
   margin: 0;
   padding: 0;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  transition: all 250ms ease;
+  margin: 0 auto;
 }
 
 /**
@@ -32,7 +54,8 @@ ul {
  * Basic styles for links
  */
 a {
-  color: $brand-color;
+  color: $link-color-light;
+  padding: 0;
   text-decoration: none;
   @include on-event {
     color: $text-color;
