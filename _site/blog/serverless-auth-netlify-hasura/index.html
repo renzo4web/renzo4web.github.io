@@ -1,0 +1,105 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Serverless Auth | Netlify + Hasura - My Blog</title>
+        <meta name="description" content="Estimated reading time: 3 minutes, 9 seconds.
+
+Story
+
+I was working on a small side project where I need..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Serverless Auth | Netlify + Hasura</h1>
+<blockquote>
+<p>Estimated reading time: 3 minutes, 9 seconds.</p>
+</blockquote>
+<h3>Story</h3>
+<p>I was working on a small side project where I needed to set up authentication and I wanted to go with a serverless approach, after reading a lot on Hasura's docs I couldn't find an easy approach without involving Auth0, Firebase or another authentication provider, and all I wanted was old fashioned JWT authentication.</p>
+<p><em>Hasura docs are really good and I will be linking them all through the post, <strong>I am not trashing on their docs</strong></em></p>
+<h3>Stack</h3>
+<table>
+<thead>
+<tr>
+<th>React</th>
+<th>Hasura</th>
+<th>Netlify</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+<h3>Hasura</h3>
+<p>Hasura let's you build a back end without writing any code, it is super easy to set up and it takes no time.</p>
+<p>Go to https://hasura.io &gt; create an account &gt; create a new project</p>
+<p>Follow <a href="https://hasura.io/docs/latest/graphql/cloud/getting-started/index.html#step-2-create-project">the docs</a> on how to create the project, the only place where I had to differ was setting the environment variables and permissions.</p>
+<p><img src="https://photos.collectednotes.com/photos/5598/3df21b39-0ab7-41b5-86b4-656d1c24690c" alt="Screenshot"></p>
+<p>The ones to pay attention to are:</p>
+<ul>
+<li><code>HASURA_GRAPHQL_UNAUTHORIZED_ROLE</code> (which according to Hasura it can be changed to anything you want but it didn't work for me until I changed it back to anonymous)</li>
+<li><code>HASURA_GRAPHQL_JWT_SECRET</code> follow <a href="https://hasura.io/docs/latest/graphql/core/auth/authentication/jwt.html#configuring-jwt-mode">this link</a> to read more about this variable but basically I used HSA256 as the type of the JWT and made a random 32 chars key. It will look like something like this:</li>
+</ul>
+<pre><code>{&quot;key&quot;:&quot;random 32 chars&quot;,&quot;type&quot;:&quot;HSA256&quot;}
+</code></pre>
+<p><a href="https://hasura.io/docs/latest/graphql/cloud/getting-started/index.html#step-3-connect-new-existing-database">Connect to or create a database</a></p>
+<p>After creating the new database we can go to create new table and create the users table, this is how my users table looks:</p>
+<p><img src="https://photos.collectednotes.com/photos/5598/ab5c7693-f270-45f5-9b1d-fc53fa15b73e" alt="Screenshot"></p>
+<p>Then, let's add the permissions (<a href="https://hasura.io/learn/graphql/hasura/authorization/2-users-table-permissions/">docs</a>), we need to set the role anonymous to be able to insert to and read from the table.</p>
+<p>Back to the API tab, we can remove the header <code>x-hasura-admin-secret</code> and set <code>x-hasura-role: anonymous</code>. It should update the schema and only show you what queries and mutations that role can make. I chose to go with a REST implementation instead of GraphQL, so I made the following query to insert a user</p>
+<pre><code class="language-graphql">mutation RegisterUser($email: String, $password: String) {
+  insert_users(objects: {email: $email, password: $password}) {
+    returning {
+      email
+      id
+    }
+  }
+}
+</code></pre>
+<p>and then clicked on the tab <code>REST</code> on the top left of the screen, that will allow you to set REST endpoints, I chose to make the method POST and it will receive an object with email and password as keys.</p>
+<p>For the login I made another endpoint but with the query</p>
+<pre><code class="language-graphql">query MyQuery($email: String) {
+  users(where: {email: {_eq: $email}}) {
+    password
+    email
+  }
+}
+</code></pre>
+<p>and I made this one a GET where the route ends with <code>/:email</code> which makes it available on the query.</p>
+<h3>Front end</h3>
+<p>What you are building your front end on doesn't actually matter, we will be using Netlify's serverless functions to connect to the Hasura generated endpoint.</p>
+<p>We need to install the following dependencies:</p>
+<ul>
+<li>bcrpyt</li>
+<li>jsonwebtoken</li>
+<li>isomorphic-fetch (or any lib for fetching that you like)</li>
+<li>netlify-cli (dev dependency)</li>
+</ul>
+<p>On the root of you project create a file called <code>netlify.toml</code> and it should contain the following:</p>
+<pre><code class="language-toml">[build]
+  functions = &quot;functions/&quot;
+</code></pre>
+<p>Now create a folder called functions also on the root of the project and add two js files inside, login.js and register.js.</p>
+<p>Now fetching the urls <code>/.netlify/functions/name-of-file</code> will actually run the serverless function inside the file.</p>
+<p>I created two gists, one for each file</p>
+<ul>
+<li><a href="https://gist.github.com/jenaro94/62a949370225388958cb9d0b481ebef2">register</a></li>
+<li><a href="https://gist.github.com/jenaro94/b9f6313d3a1980382bb42db18704e9fd">login</a></li>
+</ul>
+<p>Now all you need is to create the frontend however you like, and two forms, one to login and another to register, set the permissions for the user role and you'll be able to query when setting the</p>
+<pre><code class="language-js">{ Authorization: `Bearer ${tokenYouJustCreated}` }
+</code></pre>
+<p>header. Of course don't forget to add the header, Hasura will automatically interpret the JWT and only allow the queries you added on the permissions.</p>
+
+            </main>
+            <footer>
+                
+                <a class="next" href="/blog/coding-dummies-episode-5/">Coding & Dummies | Episode 5 &rarr;</a>
+            </footer>
+        </body>
+    </html>

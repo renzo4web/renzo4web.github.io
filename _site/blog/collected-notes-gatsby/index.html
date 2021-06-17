@@ -1,0 +1,176 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Collected Notes + Gatsby - My Blog</title>
+        <meta name="description" content="Previously I made a starter template joining 11ty and collected notes, here's the post, this time, I wanted to try it o..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Collected Notes + Gatsby</h1>
+<p>Previously I made a starter template joining 11ty and collected notes, <a href="https://collectednotes.com/jenaro/collected-notes-as-a-cms">here's the post</a>, this time, I wanted to try it out with Gatsby, I ended up building two things, a gatsby starter and a gatsby source plugin.</p>
+<p><em>You <em>could</em> do this in a single project but I wanted to try and make my own separate plugin</em></p>
+<h3>Setup</h3>
+<p>Luckily gatsby has great docs, so, I followed <a href="https://www.gatsbyjs.org/tutorial/source-plugin-tutorial/">these</a> instructions.</p>
+<p>First our repo for the starter:</p>
+<pre><code class="language-bash">gatsby new gatsby-starter-collected-notes https://github.com/gatsbyjs/gatsby-starter-hello-world
+</code></pre>
+<p>Then the repo for the source plugin:</p>
+<pre><code class="language-bash">gatsby new gatsby-source-collected-notes https://github.com/gatsbyjs/gatsby-starter-plugin
+</code></pre>
+<h4>Source plugin</h4>
+<p>From the plugin starter template, I removed all the other gatsby files <strong>but</strong> the gatsby-node.js and index.js.</p>
+<pre><code class="language-js">const axios = require(&quot;axios&quot;);
+const POST_NODE_TYPE = `CollectedNote`;
+
+exports.sourceNodes = async ({
+  actions,
+  createContentDigest,
+  createNodeId,
+}, { notesOwner }) =&gt; {
+  const { createNode } = actions;
+
+  // Call the Collceted Notes API with the passed in notesOwner
+  const result = await axios.get(`https://collectednotes.com/${notesOwner}.json`);
+  if (result.status !== 200)
+    throw new Error(&quot;Could not fetch notes from collected notes API&quot;);
+
+  result.data.notes.forEach((note) =&gt;
+    createNode({
+      ...note,
+      id: createNodeId(`${POST_NODE_TYPE}-${note.id}`),
+      internal: {
+        type: POST_NODE_TYPE,
+        contentDigest: createContentDigest(note),
+      },
+    })
+  );
+
+  return;
+};
+</code></pre>
+<p>This is basically it, remember to install axios if you are following along (or the library that you prefer).</p>
+<h4>Starter template</h4>
+<p>The important part here is to</p>
+<ul>
+<li>Install your source plugin and require it on the gatsby-config.js, I actually published gatsby-source-collected-notes to npm but you can require it like</li>
+</ul>
+<pre><code class="language-js">plugins: [
+    {
+      resolve: `gatsby-source-collected-notes`,
+      options: {
+        notesOwner: &quot;jenaro&quot;, //the aprameter we passed in the plugin
+      },
+    }
+  ],
+</code></pre>
+<ul>
+<li>Create pages on gatsby-node.js</li>
+</ul>
+<pre><code class="language-js">const path = require(&quot;path&quot;)
+
+exports.createPages = async ({ graphql, actions, reporter }) =&gt; {
+  const { createPage } = actions
+
+  // We have our data available on the graphql layer because of our plugin
+  const result = await graphql(
+    `
+      query CollectedNotesQuery {
+        allCollectedNote {
+          nodes {
+            path
+          }
+        }
+      }
+    `
+  )
+  // Handle errors
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+
+  // post template to use.
+  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
+
+  // Create pages for each note.
+  result.data.allCollectedNote.nodes.forEach(node =&gt; {
+    const path = node.path
+    createPage({
+      path: `/blog/${path}`,
+      component: blogPostTemplate,
+     // this context is later passed in to the template
+      context: {
+        pagePath: path,
+      },
+    })
+  })
+}
+</code></pre>
+<ul>
+<li>Lastly the post template that I defined on <code>src/templates/blog-post.js</code></li>
+</ul>
+<pre><code class="language-js">import React from &quot;react&quot;
+import ReactMarkdown from &quot;react-markdown&quot;
+import { graphql } from &quot;gatsby&quot;
+import Layout from &quot;../components/Layout&quot;
+import SEO from &quot;../components/SEO&quot;
+
+// here pagePath is exposed to the template because we defined it in the context.
+
+export const query = graphql`
+  query NoteQuery($pagePath: String!) {
+    collectedNote(path: { eq: $pagePath }) {
+      body
+      created_at
+      curated
+      headline
+      id
+      path
+      poster
+      site_id
+      title
+      updated_at
+      url
+      user_id
+      visibility
+    }
+  }
+`
+
+const BlogPost = ({ data, location }) =&gt; {
+  if (!data) return null
+
+  const note = data.collectedNote
+  return (
+    &lt;Layout pathname={location.pathname}&gt;
+      &lt;SEO description={note.headline} title={note.title} bodyClass=&quot;post&quot; /&gt;
+      {/* Remember to include this dependency to be able to render the markdown appropiately */}
+      &lt;ReactMarkdown source={note.body} /&gt;
+    &lt;/Layout&gt;
+  )
+}
+
+export default BlogPost
+</code></pre>
+<p>And that's basically it! There you go once more, easy peasy, you got your CMS with Collected Notes and Gatsby, everything else on this template is styling or easy enough to follow along.</p>
+<p>You can find the repositories at:</p>
+<ul>
+<li>https://github.com/jenaro94/gatsby-source-collected-notes</li>
+<li>https://github.com/jenaro94/gatsby-starter-collected-notes</li>
+</ul>
+<p>Demo at https://gatsbynotes.netlify.app</p>
+
+            </main>
+            <footer>
+                <a class="previous" href="/blog/netlify-static-site-collected-notes/">&larr; Netlify + Static site + Collected Notes</a>
+                <a class="next" href="/blog/collected-notes-as-a-cms/">Collected notes as a CMS &rarr;</a>
+            </footer>
+        </body>
+    </html>

@@ -1,0 +1,222 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Coding & Dummies | Episode 4 - My Blog</title>
+        <meta name="description" content="Coding &amp; Dummies | Episode 4
+
+
+DOM
+Eventos
+
+DOM
+
+
+
+Document Object Model
+Basicamente es una representacion del estado actual de nuestro H..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Coding &amp; Dummies | Episode 4</h1>
+<ul>
+<li><a href="#dom">DOM</a></li>
+<li><a href="#eventos">Eventos</a></li>
+</ul>
+<h2>DOM</h2>
+<blockquote>
+<p>Document Object Model<br>
+Basicamente es una representacion del estado actual de nuestro HTML en Javascript.</p>
+</blockquote>
+<ul>
+<li><a href="#seleccionar-elementos">Seleccionar elementos</a></li>
+<li><a href="#atributos">Atributos</a></li>
+<li><a href="#crear-html">Crear HTML</a></li>
+<li>[Navegación y eliminación de elementos](#navegacion-y-eliminacion de-elementos)</li>
+</ul>
+<h3>Window</h3>
+<p>Representa al navegador, es decir, solo existe cuando se usa javascript en el frontend. Metodos como <code>console.log()</code> son en realidad implementados por el window. Para una lista de todos los metodos o propiedades: <a href="https://www.w3schools.com/jsref/obj_window.asp">lista</a></p>
+<h3>Document</h3>
+<p>Tambien existe solo en el frontend, es la entrada al DOM, el primer elemento (HTMLElement) del mismo que contiene a todos los demas. Para leer todas las propiedades y metodos del document: <a href="https://developer.mozilla.org/es/docs/Web/API/Document#Extension_for_HTML_documents">lista</a></p>
+<h5>Seleccionar elementos</h5>
+<p>Existen muchas formas de seleccionar elementos, todos estos son metodos que se ejecutan en un elemento del DOM (HTMLElement), es decir, <code>element.&lt;Nombre del metodo&gt;</code> y que buscan dentro de sus hijos un elemento que cumpla con los requerimientos.</p>
+<p>que devuelven un solo elemento:</p>
+<ul>
+<li>getElementById(id)</li>
+<li>querySelector(selectorCSS)</li>
+</ul>
+<p>que devuelven una coleccion de elementos:</p>
+<ul>
+<li>querySelectorAll(selectorCSS)</li>
+<li>getElementsByClassName(className)</li>
+<li>getElementsByName(name)</li>
+<li>getElementsByTagName(tagName)</li>
+</ul>
+<h5>Atributos</h5>
+<p>Los atributos son todos los que agregamos en HTML como por ejemplo <code>id</code> o <code>class</code>, el DOM nos permite acceder a los mismos de la siguiente manera:</p>
+<pre><code class="language-js">element.id
+element.class
+
+// o
+
+element.getAttribute('id')
+element.getAttribute('class')
+</code></pre>
+<p>Tambien existen elementos propios que podemos agregar de la siguiente manera en HTML para luego consumirlos en Javascript:</p>
+<pre><code class="language-html">&lt;div data-coding-dummies=&quot;Hola dummies&quot;&gt;
+  &lt;!-- Contenido --&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">const div = document.querySelector('div')
+div.dataset.codingDummies // &quot;Hola dummies&quot; 
+</code></pre>
+<blockquote>
+<p>Set transforma a camelCase cuando tenemos '-' en el nombre<br>
+<a href="#cases">Mas sobre nombres de variables</a></p>
+</blockquote>
+<h5>Crear HTML</h5>
+<pre><code class="language-js">const element = document.createElement(&lt;tag name&gt;)
+document.body.appendChild(element)
+</code></pre>
+<p>En la primer sentencia creo un elemento <code>&lt;tag name&gt;</code> donde tag name es un string con el valor de algun tag, por ejemplo, div. Y en la segunda sentencia lo agrego al final del body.</p>
+<p>Tambien se puede usar el metodo <code>insertAdjacentElement(position, element)</code> para agregar un elemento y elegir su posicion.</p>
+<p>Posiciones (debe ser una de las siguientes):</p>
+<ul>
+<li>beforebegin</li>
+<li>afterbegin</li>
+<li>beforeend // igual que append child</li>
+<li>afterend</li>
+</ul>
+<p>Como cambia segun la posicion:</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;!-- before begin --&gt;
+  &lt;div&gt;
+    &lt;!-- after begin --&gt;
+    &lt;!-- contenido previo del div --&gt;
+    &lt;!-- before end --&gt;
+  &lt;/div&gt;
+  &lt;!-- after end --&gt;
+&lt;body&gt;
+</code></pre>
+<p>Otra forma de agregar elementos al DOM es mediante la propiedad innerHTML, pero nos deja vulnerables a ataques <a href="#xss">XXS</a> en algunos casos, por ende hay que tener mucho cuidado al usarla.</p>
+<pre><code class="language-js">document.body.innerHTML = &quot;&lt;h1&gt;Hola Dummies&lt;/h1&gt;&quot;
+</code></pre>
+<h5>Navegación y eliminación de elementos</h5>
+<ul>
+<li>parentElement | elemento padre</li>
+<li>firstChild | primer hijo</li>
+<li>nextElementSibling | el siguiente hermano</li>
+<li>previousElementSibling | el hermano anterior</li>
+</ul>
+<p><img src="https://photos.collectednotes.com/photos/5598/8aadc00f-3a3a-4db3-8674-ea0545fea1dc" alt="alt"></p>
+<p>Si en el anterior ejemplo suponemos que estos tres elementos son hijos directos del body:</p>
+<pre><code class="language-js">const second = document.querySelector('#second')
+const first = second.previousElementSibling // #first
+second.previousElementSibling // #third
+const body = second.parentElement // body
+body.firstChild() // #first
+first.previousElementSibling // null
+</code></pre>
+<h2>Eventos</h2>
+<ul>
+<li><a href="#listeners">Listeners</a></li>
+<li><a href="#targets">Targets</a></li>
+<li><a href="#capture">Capture</a></li>
+<li><a href="#bubbling">Bubbling</a></li>
+<li><a href="#propagation">Propagation</a></li>
+<li><a href="#prevent-default-eventos-del-form">Prevent default / eventos del form</a></li>
+</ul>
+<h5>Listeners</h5>
+<p>Un event listener es una funcion que va a ser llamada una vez que el evento que estamos escuchando se ejecute.</p>
+<p>ej:</p>
+<pre><code class="language-js">function listener() {
+   console.log('click!!')
+}
+
+const evento = 'click'
+
+const element = document.querySelector('button')
+
+element.addEventListener(evento, listener)
+</code></pre>
+<p>donde <strong>event</strong> es un <code>string</code> que describe el evento, como click, probablemente el evento mas usado. Para todos los eventos: <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">lista de eventos</a></p>
+<p>y donde <strong>listener</strong> es una funcion que se ejecutara cuando se cumpla el evento <strong>event</strong> en el elemento al que le agregamos el event listener yq ue por defecto recibe un parametro <strong>event</strong>.</p>
+<h5>Targets</h5>
+<p>Target es una propiedad del objeto <strong>event</strong> que recibe cualquier funcion que sea un event listener, y que es una referencia a quien disparo el evento.</p>
+<p>Modificando el ejemplo anterior:</p>
+<pre><code class="language-js">function listener(e) {
+   console.log(e.target) // imprime element
+}
+</code></pre>
+<p>Current target es otra propiedad del objeto, es una referencia a quien tiene el event listener, en el ejemplo anterior es igual a target, pero, por ejemplo <em>(lleno de malas practicas, solo ejemplo)</em>:</p>
+<p><img src="https://photos.collectednotes.com/photos/5598/52a28a5f-debf-49a3-b607-2efd7a07179c" alt="alt"></p>
+<pre><code class="language-js">const div = document.querySelector('div')
+const button = document.querySelector('button')
+
+const handleClick = evento =&gt; {
+  console.log(e.currentTarget) // click en boton ? div : div
+  console.log(e.target) // click en boton ? button : div
+}
+
+div.addEventListener('click', handleClick)
+</code></pre>
+<h3>Procesamiento de eventos</h3>
+<p>Existen tres fases:</p>
+<p><img src="https://photos.collectednotes.com/photos/5598/36406a0d-3438-4610-b67f-5faae3460cc9" alt="alt"></p>
+<h5>Capture</h5>
+<p>Raramente usando en el codigo, es la primer fase, donde el evento viaja desde arriba hacia abajo, para capturar un evento en esta fase, se debe usar:</p>
+<pre><code class="language-js">element.addEventListener(event, listener, { capture: true })
+</code></pre>
+<h5>Target</h5>
+<p>Este es el momento ene el que un elemento dispara el evento, este sera el <code>event.target</code></p>
+<h5>Bubbling</h5>
+<p>El evento vuelve a viajar hacia arriba, en el ejemplo anterior, el target era el boton y quien escuchaba el evento era el div, quien recibe el evento gracias a esta fase.</p>
+<h5>Propagation</h5>
+<p>En las tres fases de arriba se puede ver como el evento se propaga, inicialmente de arriba hacia abajo hasta que alguien dispara el evento y  luego &quot;flota&quot; nuevamente hacia arriba.</p>
+<p>Si en algun momento quisieramos detener esta propagacion, podemos usar una funcion que el evento tiene por defecto:</p>
+<pre><code class="language-js">event.stopPropagation()
+</code></pre>
+<p>Si pusimos <code>{ capture: true }</code> va a detener al evento para que no siga hacia abajo, si no, va a detener la fase bubbling.</p>
+<h5>Prevent default / eventos del form</h5>
+<p>El form por defecto tiene un evento que es submit, al igual que el <code>&lt;a&gt;</code> tiene el evento de navegar cuando se lo clickea.</p>
+<p>Para evitar que se ejecute el evento por defecto, debemos asignarle un event listener al mismo evento y prevenir el evento por defecto:</p>
+<pre><code class="language-js">form.addEventListener('submit', (evento) =&gt; {
+   evento.preventDefault()
+  // hacer lo que quieras con el form
+})
+</code></pre>
+<p>Aparte de esto, un form tiene por defecto todos los inputs definidos dentro de este, donde la clave es el atributo name en el input.</p>
+<p>ej:</p>
+<pre><code class="language-html">&lt;form&gt;
+  &lt;input name=&quot;myInput&quot; type=&quot;text&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+<pre><code class="language-js">function onSubmit(event) {
+   event.preventDefault()
+  console.log(event.target.myInput) // el elemento del input
+  console.log(event.target.myInput.value) // valor del input
+}
+</code></pre>
+<h6>Cases</h6>
+<ul>
+<li>camelCase</li>
+<li>kebab-case</li>
+<li>snake_case</li>
+<li>PascalCase</li>
+</ul>
+<h6>XSS</h6>
+<p>Es cuando alguien puede correr javascript dentro de tu sitio y lo usa para hacer algun ataque, por ejemplo si una persona mediante algun input puede insertar html con javascript dentro, el cual se ejecuta al agregarse al DOM.</p>
+
+            </main>
+            <footer>
+                <a class="previous" href="/blog/animate-on-show-with-react-react-spring/">&larr; Animate on show with React & React Spring</a>
+                <a class="next" href="/blog/coding-dummies-episode-3/">Coding & Dummies | Episode 3 &rarr;</a>
+            </footer>
+        </body>
+    </html>

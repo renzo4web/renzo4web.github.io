@@ -1,33 +1,24 @@
-# Webpack Frontend Starterkit
+# e11ty-collected-notes
 
-[![Dependabot badge](https://flat.badgen.net/dependabot/wbkd/webpack-starter?icon=dependabot)](https://dependabot.com/)
+e11ty starter hooked up with collected notes.
 
-A lightweight foundation for your next webpack based frontend project.
+Read more about it [here](https://collectednotes.com/jenaro/collected-notes-as-a-cms)
 
-### Installation
+If you want these template to show your own notes just 
 
 ```
+npx degit https://github.com/jenaro94/e11ty-collected-notes/ my-dir
+cd my-dir
+
+yarn
+yarn dev
+
 npm install
+npm run dev
 ```
 
-### Start Dev Server
+On the _data folder change the URL to point wherever you'd like
 
 ```
-npm start
+axios.get('https://collectednotes.com/<your name>.json')
 ```
-
-### Build Prod Version
-
-```
-npm run build
-```
-
-### Features:
-
-- ES6 Support via [babel](https://babeljs.io/) (v7)
-- JavaScript Linting via [eslint-loader](https://github.com/MoOx/eslint-loader)
-- SASS Support via [sass-loader](https://github.com/jtangelder/sass-loader)
-- Autoprefixing of browserspecific CSS rules via [postcss](https://postcss.org/) and [autoprefixer](https://github.com/postcss/autoprefixer)
-- Style Linting via [stylelint](https://stylelint.io/)
-
-When you run `npm run build` we use the [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to move the css to a separate file. The css file gets included in the head of the `index.html`.

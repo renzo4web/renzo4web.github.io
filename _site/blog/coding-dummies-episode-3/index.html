@@ -1,0 +1,165 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Coding & Dummies | Episode 3 - My Blog</title>
+        <meta name="description" content="Coding &amp; Dummies | Episode 3
+
+Objetivo: Todo App
+Javascript
+
+Como correrlo? 
+  &lt;!-- ... --&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      // inline
+  ..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Coding &amp; Dummies | Episode 3</h1>
+<p>Objetivo: <a href="cad-todo.surge.sh">Todo App</a></p>
+<h2>Javascript</h2>
+<p>Como correrlo?</p>
+<pre><code class="language-html">  &lt;!-- ... --&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      // inline
+      console.log(&quot;Hola!&quot;);
+    &lt;/script&gt;
+    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- Debe ser al final del body --&gt;
+  &lt;/body&gt;
+</code></pre>
+<h3>Variables</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>reasignar</th>
+<th>scope/alcance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const</td>
+<td>no</td>
+<td>block</td>
+</tr>
+<tr>
+<td>let</td>
+<td>si</td>
+<td>block</td>
+</tr>
+<tr>
+<td>var</td>
+<td>si</td>
+<td>function</td>
+</tr>
+</tbody>
+</table>
+<h3>Tipos</h3>
+<p><code>typeof variable</code></p>
+<ul>
+<li>Strings</li>
+<li>Numbers</li>
+<li>null (typeof da object pero es un <code>bug</code>)</li>
+<li>undefined</li>
+<li>Boolean</li>
+<li>Functions</li>
+<li>Objects | Arrays</li>
+</ul>
+<h3>Funciones</h3>
+<h5>Incluidas</h5>
+<ul>
+<li>Numbers -  Math.max(), Math.min()</li>
+<li>Strings - 'asd'.toUpperCase()</li>
+<li>Objects - Object.entries()</li>
+<li>Arrays - map | forEach</li>
+</ul>
+<h5>Custom</h5>
+<p>Declaracion:</p>
+<pre><code class="language-js">function sumar(x, y) {
+  return x + y
+}
+</code></pre>
+<p>Llamar:</p>
+<pre><code class="language-js">sumar(2, 4) // 6
+</code></pre>
+<p>Otras formas de declarar:</p>
+<p>Arrow function</p>
+<pre><code class="language-js">const sumar = (x, y) =&gt; {
+  return x + y
+}
+</code></pre>
+<p>Arrow function con retorno implicito</p>
+<pre><code class="language-js">const sumar = (x, y) =&gt; x + y
+</code></pre>
+<pre><code class="language-js">const sumar = function(x, y) {
+ return x + y
+}
+</code></pre>
+<h3>Scope</h3>
+<pre><code class="language-js">function sumarConstante(x) {
+ const constante = 5
+ return x + constante
+}
+
+sumarConstant(2) // 7
+console.log(constante) // ReferenceError: constante is not defined
+</code></pre>
+<pre><code class="language-js">const constante = 5
+function sumarConstante(x) {
+ return x + constante
+}
+
+sumarConstant(2) // 7
+console.log(constante) // 5
+</code></pre>
+<h3>Hoisting</h3>
+<p>Quienes?</p>
+<ul>
+<li><code>function</code></li>
+<li><code>var</code></li>
+</ul>
+<p>Que?</p>
+<pre><code class="language-js">nombreDelGato(&quot;Dumas&quot;);
+
+function nombreDelGato(nombre) { 
+  console.log(&quot;El nombre de mi gato es &quot; + nombre);
+}
+
+// El nombre de mi gato es Dumas
+</code></pre>
+<pre><code class="language-js">nombreDelGato(&quot;Dumas&quot;);
+
+const nombreDelGato = (nombre) =&gt;  { 
+  console.log(&quot;El nombre de mi gato es &quot; + nombre);
+}
+
+// Uncaught ReferenceError: nombreDelGato is not defined
+</code></pre>
+<h3><a href="https://whatthefuck.is/closure">Closure</a></h3>
+<pre><code class="language-js">function liveADay() {
+  let food = 'cheese'; // Declare `food`
+  function eat() {
+    console.log(food + ' is good'); // Read `food`
+  }
+  eat();
+}
+liveADay();
+</code></pre>
+
+            </main>
+            <footer>
+                <a class="previous" href="/blog/coding-dummies-episode-4/">&larr; Coding & Dummies | Episode 4</a>
+                <a class="next" href="/blog/coding-dummies-episode-2/">Coding & Dummies | Episode 2 &rarr;</a>
+            </footer>
+        </body>
+    </html>

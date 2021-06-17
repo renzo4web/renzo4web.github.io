@@ -1,0 +1,184 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Collected Notes as a full-fledged CMS - My Blog</title>
+        <meta name="description" content="Ok, all of the notes I've made about using Collected Notes were more oriented to creating fully static pag..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Collected Notes as a full-fledged CMS</h1>
+<p>Ok, all of the notes I've made about using Collected Notes were more oriented to creating fully static pages like blog posts, but what if you can use it to populate everything on your website and remain in control of all of the markup?</p>
+<h3>Let's try 11ty one more time.</h3>
+<p>This time, we'll create an empty starter project like last time, if you didn't read the last post, here is how to start:</p>
+<pre><code class="language-bash">mkdir collected-notes-powered &amp;&amp; cd collected-notes-powered
+yarn init -y
+yarn add @11ty/eleventy axios
+</code></pre>
+<p>Add the scripts to our package.json</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;collected-notes-powered&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;dependencies&quot;: {
+    &quot;@11ty/eleventy&quot;: &quot;^0.11.0&quot;,
+    &quot;axios&quot;: &quot;^0.19.2&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;prod&quot;: &quot;eleventy&quot;,
+    &quot;dev&quot;: &quot;eleventy --serve&quot;
+  }
+}
+</code></pre>
+<p>We are adding axios to request the data from collected notes, but you can use your preferred library, like node-fetch, keep in mind this will run at build time so the browser native fetch is not available.</p>
+<p>We will create a file called <code>index.md</code> at the root level and all we'll add to it is the layout:</p>
+<pre><code class="language-md">---
+layout: layout.11ty.js
+---
+</code></pre>
+<p>Then, under <code>_includes/layout.11ty.js</code> we'll make a standard, empty html template for now:</p>
+<pre><code class="language-html">module.exports = async () =&gt; {
+  return /*html*/`
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+            &lt;meta charset=&quot;UTF-8&quot;&gt;
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+            &lt;title&gt;Home&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+    `;
+};
+</code></pre>
+<p>Now here comes the tricky part, to fill in the data, we'll use a custom &quot;convention&quot; to write markdown on Collected Notes and consume it later on our website. Here's how we'll write the markdown emulating frontmatter:</p>
+<pre><code class="language-md"># Testing frontmatter
+
+---
+
+HERO
+
+title: Example App
+
+subtitle: This is a great example app!
+
+--color: #000000
+
+--backgroundColor: #ffffff
+
+---
+
+ABOUT
+
+title: About Us
+
+subtitle: This is where we tell you about our company!
+
+--backgroundColor: #000000
+
+--color: #ffffff
+</code></pre>
+<p>Now to consume the data on our website we will create a file under <code>_data/cms.js</code> and it should look something like this:</p>
+<pre><code class="language-js">const axios = require(&quot;axios&quot;);
+
+module.exports = async () =&gt; {
+  // fetch markdown from collected notes
+  const result = await axios.get(
+    &quot;https://collectednotes.com/&lt;youruser&gt;/&lt;yournote&gt;.md&quot;
+  );
+  // split each section
+  const sections = result.data.split(&quot;---&quot;);
+  // parse sections and return them
+  const sectionsData = sections
+    .map(parseToObject)
+    .reduce((acc, curr) =&gt; ({ ...acc, ...curr }), {});
+  return sectionsData;
+};
+
+function parseToObject(section) {
+  // split on newline and only keep non empty parts
+  const parts = section.split(&quot;\n&quot;).filter((p) =&gt; !!p);
+  let sectionName = &quot;&quot;;
+  // grab each key value pair for each section
+  const sectionValues = parts.reduce((acc, curr, index) =&gt; {
+    if (index === 0) {
+      sectionName = curr;
+    }
+    const objParts = curr.split(&quot;: &quot;);
+    if (objParts.length === 2) {
+      acc = { ...acc, [objParts[0]]: objParts[1] };
+    }
+
+    return acc;
+  }, {});
+
+  return { [sectionName]: sectionValues };
+}
+</code></pre>
+<p>Now we have an object that looks like this:</p>
+<pre><code class="language-js">{
+  '# Testing frontmatter': {},
+  HERO: {
+    title: 'Example App',
+    subtitle: 'This is a great example app!',
+    '--color': '#000000',
+    '--backgroundColor': '#ffffff'
+  },
+  ABOUT: {
+    title: 'About Us',
+    subtitle: 'This is where we tell you about our company!',
+    '--backgroundColor': '#000000',
+    '--color': '#ffffff'
+  }
+}
+</code></pre>
+<p>And this is available to us on the <code>layout.11ty.js</code> file with the name cms, because that is how we named the file under the <code>_data</code> folder.</p>
+<p>We'll add the following to <code>layout.11ty.js</code> just to demonstrate the possibilities:</p>
+<pre><code class="language-js">const HomeTemplate = require('../components/HomeTemplate.11ty')
+const AboutTemplate = require('../components/AboutTemplate.11ty')
+
+module.exports = async ({ cms }) =&gt; {
+       //...
+        &lt;body&gt;
+          &lt;style&gt;
+            section {
+              background-color: var(--backgroundColor);
+              color: var(--color);
+            }
+          &lt;/style&gt;
+            ${HomeTemplate(cms.HERO)}
+            ${AboutTemplate(cms.ABOUT)}
+        &lt;/body&gt;
+        //...
+</code></pre>
+<p>Now let's create those components, you can add them wherever you want, but as you can see I added them at <code>./components/</code></p>
+<p>And they both look like this: (this is the about page but the hero looks the same)</p>
+<pre><code class="language-js">module.exports = (about) =&gt; {
+  return /*html*/`
+    &lt;section id=&quot;about&quot; style=&quot;--color: ${about[&quot;--color&quot;]}; --backgroundColor: ${about[&quot;--backgroundColor&quot;]}&quot;&gt;
+        &lt;h1&gt;About&lt;/h1&gt;
+        &lt;h2&gt;${about.title}&lt;/h2&gt;
+        &lt;p&gt;${about.subtitle}&lt;/p&gt;
+    &lt;/section&gt;
+    `;
+};
+</code></pre>
+<p>Now you can see that running <code>yarn dev</code> on your terminal will start a development server and by navigating to <code>http://localhost:8080</code> you can see your content!</p>
+<p>Now imagine the possibilities, imagine you are using pagination as we did on the previous 11ty post to showcase your case studies, you could actually add css variables with different theme colors and for each case study customize the rendered website with said colors. You could mix and match this data file with the same data file as before and render blog posts on one hand and case studies on the other.</p>
+<p>Hope you enjoyed this post and it was useful, as a footnote, I should clarify Collected Notes allows you to set a note as unlisted, I would set a CMS file as unlisted and if needed do some filtering on our website.</p>
+
+            </main>
+            <footer>
+                <a class="previous" href="/blog/coding-dummies-episode-1/">&larr; Coding & Dummies | Episode 1</a>
+                <a class="next" href="/blog/netlify-static-site-collected-notes/">Netlify + Static site + Collected Notes &rarr;</a>
+            </footer>
+        </body>
+    </html>

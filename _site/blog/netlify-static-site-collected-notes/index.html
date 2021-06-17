@@ -1,0 +1,64 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Netlify + Static site + Collected Notes - My Blog</title>
+        <meta name="description" content="I know I've been pushing it lately with Collected Notes as a CMS, but hear me out.
+
+I was thinking all t..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Netlify + Static site + Collected Notes</h1>
+<p>I know I've been pushing it lately with Collected Notes as a CMS, but hear me out.</p>
+<p>I was thinking all the setup we had done so far, with 11ty or with Gatsby, is great, but it has an issue; say you are selling a site to a client and set them up with Collected Notes as a CMS and every other day they ping you on Slack to tell you there is a new post they need live. That is just unsustainable, but, what if there was a way you could set that up for them?</p>
+<p>Have you ever seen one of these on a starter template somewhere?</p>
+<p><img src="https://www.netlify.com/img/deploy/button.svg" alt="button"></p>
+<p>This is a button Netlify uses to trigger a new site deployment, but with a little help from serverless functions, we can set it up to do exactly what we want to.</p>
+<p>All we need to do is add a serverless function to our site, for that, you need to start by adding <code>netlify.toml</code> if you don't have it yet.</p>
+<pre><code class="language-toml">[build]
+    functions = &quot;functions&quot; 
+</code></pre>
+<p>This is all you need to tell netlify that your serverless functions are on the functions folder.</p>
+<p>Now we will add the folder functions at the root level of our project with the file <code>rebuild.js</code></p>
+<pre><code class="language-js">const axios = require(&quot;axios&quot;)
+
+exports.handler = async event =&gt; {
+  const hookURL =
+    event.queryStringParameters &amp;&amp; event.queryStringParameters.hook
+  if (hookURL) {
+    const response = await axios.post(hookURL)
+    if (response.status !== 200) {
+      return { statusCode: response.status, body: &quot;Could not rebuild&quot; }
+    }
+    return { statusCode: 200, body: &quot;rebuilding&quot; }
+  } else {
+    return { statusCode: 200, body: &quot;Nothing happened&quot; }
+  }
+}
+</code></pre>
+<p>This is all the code I used to set up the serverless function, it receives a query parameter where we will put the netlify hook that triggers to rebuild &amp; redeploy the site.</p>
+<p>The endpoint we will be hitting to actually deploy the site would look something like this:</p>
+<p><code>https://yoursite.com/.netlify/functions/rebuild?hook=yourhook</code></p>
+<p>Now, to test this function on localhost you need to be using netlify's cli and run netlify dev, I won't go into that, you can read about it <a href="https://docs.netlify.com/cli/get-started/">here</a>.</p>
+<p>But how do we get this hook? Once you deployed your site to Netlify, go over to <code>site settings &gt; build &amp; deploy &gt; build hooks</code> and click on &quot;Add build hook&quot;. That's it!</p>
+<p>Now, you can add a private note on your Collected Notes account that has a button just like this! After your client finishes a new post, he has his own, one-click deploy set up!</p>
+<p><a href="https://netlifynotes.netlify.app/.netlify/functions/rebuild?hook=https://api.netlify.com/build_hooks/5f1b2cc0757708dbc5319ba4"><img src="https://www.netlify.com/img/deploy/button.svg" alt="button"></a></p>
+<p>Lastly, you should redirect your client to a site that shows a message.</p>
+<p><strong>Bonus track:</strong> you can add this badge Netlify provides that updates with the build status: (Settings &gt; General &gt; Status badges)</p>
+<p><a href="https://app.netlify.com/sites/netlifynotes/deploys"><img src="https://api.netlify.com/api/v1/badges/7174f37d-cc0a-456f-b785-1568d93e89a3/deploy-status" alt="Netlify Status"></a></p>
+<p><em><em>Thanks to Jason Lengstorf and the party corgi community that was kind enough to help me with this.</em></em></p>
+
+            </main>
+            <footer>
+                <a class="previous" href="/blog/collected-notes-as-a-full-fledged-cms/">&larr; Collected Notes as a full-fledged CMS</a>
+                <a class="next" href="/blog/collected-notes-gatsby/">Collected Notes + Gatsby &rarr;</a>
+            </footer>
+        </body>
+    </html>

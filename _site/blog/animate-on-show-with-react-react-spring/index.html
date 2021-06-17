@@ -1,0 +1,111 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Animate on show with React & React Spring - My Blog</title>
+        <meta name="description" content="Animate on show with React &amp; React Spring
+
+Recently I've been wanting to learn how to use react-spring and also trying to learn more about typesc..."/>
+        <link rel="stylesheet" href="/css/global.css" />
+    </head>
+        <body class="post">
+            <header>
+                <a href="/blog/">&larr; back</a>
+            </header>
+            <main>
+                <h1>Animate on show with React &amp; React Spring</h1>
+<p>Recently I've been wanting to learn how to use <a href="https://www.react-spring.io/">react-spring</a> and also trying to learn more about typescript. Two days ago I was assigned a task on a project to animate components as the user scrolls into them, you know, fly-in/fade-in/whatever-the-client-wants-this-time, anyways, I thought to myself, this is a great opportunity to check some of the stuff off my list.</p>
+<p><a href="https://useanimateonshow.netlify.app/">Our objective/end-product</a></p>
+<p>I'm going to break bit by bit how I built this how and how to use it:</p>
+<p>This is the wrapper component that will be returned to the end user.</p>
+<pre><code class="language-tsx">const wrapper: FunctionComponent&lt;WrapperProps&gt; = ({
+  children,
+  style, // use spring return object.
+  visible // ref for the element to be watched.
+}) =&gt; (
+  &lt;div ref={visible}&gt;
+    &lt;animated.div style={style}&gt;{children}&lt;/animated.div&gt;
+  &lt;/div&gt;
+)
+</code></pre>
+<p>Here we define the hook, I removed some types here for readability.</p>
+<pre><code class="language-tsx">function useAnimateOnShow(from, to, config) {
+  const ref = useRef&lt;HTMLElement&gt;()
+  const [visible, setVisible] = useState(false)
+  const props = useSpring(visible ? to : from)
+
+  useEffect(() =&gt; {
+
+    // if no window or no Intersection Observer early return showing the elements.
+    if (typeof window === 'undefined') return
+    if (
+      !('IntersectionObserver' in window) ||
+      !('IntersectionObserverEntry' in window) ||
+      !('isIntersecting' in window.IntersectionObserverEntry.prototype)
+    ) {
+      setVisible(true)
+      return function cleanup() {
+        console.warn('No intersection observer in window.')
+      }
+    }
+
+    // IO Callback
+    const handleVisible = (
+      entries: IntersectionObserverEntry[],
+      observer: IntersectionObserver
+    ) =&gt; {
+      if (entries.length &gt; 0) {
+        const entry = entries[0]
+
+        // if config is infinite then keep watching otherwise unobserve.
+        if (config?.infinite) {
+          setVisible(entry.isIntersecting)
+        } else {
+          if (entry.intersectionRatio &gt; 0) {
+            setVisible(true)
+            observer.unobserve(entry.target)
+          }
+        }
+
+        // Custom extra method just because.
+        if (config?.onShow) {
+          config.onShow(entry.isIntersecting)
+        }
+      }
+    }
+
+   // IO Options
+    const options = {
+      root: config?.root || null,
+      rootMargin: config?.rootMargin || '0px',
+      threshold: config?.threshold || 1.0
+    }
+
+    const observer = new IntersectionObserver(handleVisible, options)
+
+    if (ref &amp;&amp; ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return function cleanup() {}
+  }, [ref, config])
+
+  return [wrapper, ref, props]
+}
+
+export default useAnimateOnShow
+</code></pre>
+<p>That's it, single file to get our React components animating in like <a href="https://useanimateonshow.netlify.app">this</a>.</p>
+<p><a href="https://useanimateonshow.netlify.app"><img src="https://photos.collectednotes.com/photos/5598/c6b88c4e-3f49-4839-8fca-f0502b6a2b4b" alt="Screen Gif"></a></p>
+<p>Got a suggestion or improvement? You can check the repo <a href="https://github.com/jenaro94/useanimateonshow">here</a></p>
+<p>I'll continue to add more and more examples.</p>
+
+            </main>
+            <footer>
+                <a class="previous" href="/blog/coding-dummies-episode-5/">&larr; Coding & Dummies | Episode 5</a>
+                <a class="next" href="/blog/coding-dummies-episode-4/">Coding & Dummies | Episode 4 &rarr;</a>
+            </footer>
+        </body>
+    </html>
