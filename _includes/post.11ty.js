@@ -20,14 +20,16 @@ module.exports = (data) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>${title} - My Blog</title>
         <meta name="description" content="${headline}"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/global.css" />
     </head>
         <body class="post">
-            <header>
+            <header class="container">
                 <a href="${data.page.url === '/projects/' ? '/' : '/projects/'}">&larr; back</a>
                 <a class="link-home" href="/">HOME</a>
             </header>
-            <main>
+            <main class="container">
                 ${data.content}
             </main>
             <footer>

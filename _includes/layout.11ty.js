@@ -36,6 +36,7 @@ module.exports = (data) => /*html*/`
             <main class="container">
                 ${data.content}
             </main>
+            <div class="container marquee"> <div>That's all Folks! 😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀 That's all Folks!</div> </div>
         </body>
     </html>
 `;

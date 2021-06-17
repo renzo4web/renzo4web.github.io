@@ -8,24 +8,27 @@ title: Renzo Barrios
 <div class="welcome">
 
 # Hi, I'm Renzo 👋
-<span data-wenk="At the moment junior 👶">Frontend developer</span> powered by cofee ☕ living in <span data-wenk="Mendoza">Argentina🌎.</span>
+<span class="flash" data-wenk="At the moment junior 👶">Frontend developer</span> powered by cofee ☕ living in <span data-wenk="Mendoza">Argentina🌎.</span>
 <p>
 Currently exploring new opportunities and side projects
 I deeply believe that simplicity is the key to making great products. 
 </p>
 
-<a href="/projects">See some of my past work & projects.</a>
+
+<p>Right now I'm focusing on learning more about <span data-wenk="The king of the web" class="javascript-txt">JavaScript</span>, <span data-wenk="Is it just a trend?" class="react-txt">React</span>. One day I'll evolve into the mythical <span data-wenk="if there is such a thing">✨full-stack developer✨.</span></p>
 
 <hr>
 
-[If you have time you can read ](/about)
 
-<p>Right now I'm focusing on learning more about <span data-wenk="The king of the web" class="javascript-txt">JavaScript</span>, <span data-wenk="Is it just a trend?" class="react-txt">React</span>. One day I'll evolve into the mythical <span data-wenk="if there is such a thing">✨full-stack developer✨.</span></p>
+
+[If you have time you can read more &rarr;](/about)
 
 </div>
 
 
-## Projects
+<h2>
+<a data-wenk="More Projects" href="/projects">Projects</a>
+</h2> 
 
 
 <div class="project-grid">
@@ -67,7 +70,12 @@ Enter a color in hex or rgb and darken or lighten it as you wish, a simple appli
 </div>
 
 
-
+<section class="container contact">
+    <h4>Reach me out:</h4>
+    <a href="mailto:renzobarrios@aol.com">renzobarrios@aol.com</a>
+    <a href="linkedin.com/in/renzobarrios/">Linkedin</a>
+    <a href="https://twitter.com/renzo4web">Twitter</a>
+</section>
 
 
 </div>
