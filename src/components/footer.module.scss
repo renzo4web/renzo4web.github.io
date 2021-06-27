@@ -1,0 +1,16 @@
+.footer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer a {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 2rem;
+  margin: auto 0;
+}

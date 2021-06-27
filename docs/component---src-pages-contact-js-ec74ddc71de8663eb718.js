@@ -1,0 +1,2 @@
+(self.webpackChunkgatsby_starter_hello_world=self.webpackChunkgatsby_starter_hello_world||[]).push([[501],{262:function(e,t,a){"use strict";a.r(t);var l=a(7294),r=a(8804),n=a(6179);t.default=function(){return l.createElement(r.Z,null,l.createElement(n.Z,{title:"Contact",description:"Contact me page"}),l.createElement("span",{"aria-label":"heart",role:"img"},"📑"),l.createElement("h2",null,"Reach me out : renzo@renzo.com"))}}}]);
+//# sourceMappingURL=component---src-pages-contact-js-ec74ddc71de8663eb718.js.map

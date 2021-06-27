@@ -1,0 +1,23 @@
+.content {
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 700px;
+}
+.content h2,
+.content h1 {
+  font-size: 2rem;
+  margin: 2em 0 0 0;
+  border-bottom: 2px solid orange;
+}
+
+.content p {
+  text-align: left;
+}
+
+.content p a {
+  text-decoration: underline;
+}
+
+.content p a:hover {
+  color: #5856d6;
+}
