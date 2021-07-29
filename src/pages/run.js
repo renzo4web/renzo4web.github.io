@@ -9,7 +9,7 @@ const Run = () => {
   const username = 'renzo4web'
   const sites = [
     { name: 'Personal Site', url: '/', local: true },
-    { name: 'Resume', url: 'resume.pdf', local: false },
+    { name: 'Resume', url: '/resume.pdf', local: false },
     { name: 'Codewars', url: 'https://www.codewars.com/users/renzo4web' },
     {
       name: 'FreeCodeCamp',
