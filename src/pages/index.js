@@ -17,7 +17,7 @@ import Grid from '../components/grid'
 const HomePage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulProject(filter: {tags: {eq: "selected"}}) {
+      allContentfulProject(filter: { tags: { eq: "selected" } }) {
         edges {
           node {
             id
@@ -33,8 +33,6 @@ const HomePage = () => {
   const {
     allContentfulProject: { edges: projects },
   } = data
-
-
 
   return (
     <Layout>

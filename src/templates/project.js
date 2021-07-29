@@ -15,7 +15,7 @@ export const query = graphql`
         raw
         references {
           description
-          fluid(maxWidth: 500 quality: 90) {
+          fluid(maxWidth: 400, quality: 80) {
             ...GatsbyContentfulFluid
           }
         }
@@ -29,22 +29,30 @@ const Project = ({ data }) => {
     contentfulProject: { title, description, body },
   } = data
 
+  let imgs = []
   const options = {
     renderNode: {
       'embedded-asset-block': () => {
-        const url = body.references[0].fluid
-        const alt = body.references[0].description
-
-        return (<Img loading='eager' fluid={url} alt={alt} key={alt} />)
+        console.log('CALLED')
+        if (imgs.length > 0) return
+        imgs = body.references.map(ref => {
+          if (imgs.includes(ref)) return
+          const url = ref.fluid
+          const alt = ref.description
+          console.log({ url, alt })
+          return <Img loading="eager" fluid={url} alt={alt} key={alt.src} />
+        })
+        return imgs
       },
     },
   }
 
-
-  return (<Layout pageTitle={title} >
+  return (
+    <Layout pageTitle={title}>
       <SEO title={title} description={description} />
-        {documentToReactComponents(JSON.parse(body.raw), options)}
-    </Layout>)
+      {documentToReactComponents(JSON.parse(body.raw), options)}
+    </Layout>
+  )
 }
 
 export default Project

@@ -1,0 +1,134 @@
+{
+  "selectedTemplate": 3,
+  "headings": {
+    "skills": "Skills",
+    "projects": "Proyectos",
+    "education": "Educación",
+    "awards": "Idiomas"
+  },
+  "basics": {
+    "name": "Renzo Barrios",
+    "email": "renzobarrios@aol.com",
+    "location": {
+      "address": "Mendoza, Argentina"
+    },
+    "website": "renzo4web.me",
+    "phone": "github.com/renzo4web"
+  },
+  "education": [
+    {
+      "institution": "FreeCodeCamp",
+      "startDate": "",
+      "endDate": "",
+      "gpa": "",
+      "area": "JavaScript Algorithms and Data Structures"
+    },
+    {
+      "area": "Responsive Web Design",
+      "institution": "FreeCodeCamp"
+    },
+    {
+      "area": "Introduction to Git and GitHub",
+      "institution": "Google Career Certificates"
+    },
+    {
+      "area": "The JavaScript Bootcamp",
+      "institution": "Scrimba",
+      "studyType": "              ",
+      "location": "              "
+    }
+  ],
+  "work": [
+    {
+      "company": "",
+      "location": "",
+      "position": "",
+      "website": "",
+      "startDate": "",
+      "endDate": "",
+      "highlights": [
+        ""
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "level": "",
+      "keywords": [
+        "Javascript",
+        "CSS",
+        "NodeJS",
+        "ReactJS",
+        "Webpack",
+        "Python"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "keywords": [
+        "ReactJS, Parcel, Github API"
+      ],
+      "name": "Github Battle",
+      "url": "https://github.com/renzo4web/ReactLand/tree/main/01-Github-Battle",
+      "description": "Es una App donde puedes ver los repositorios más populares de varios lenguajes ademas de comparar dos perfiles de Github."
+    },
+    {
+      "keywords": [
+        "Javascript, Hackers News API, Webpack"
+      ],
+      "name": "Hacker News Clone",
+      "description": "Clon de Hackers News realizado en Javascript Vanilla , con experimentación de un Reducer  propio.",
+      "url": "https://github.com/renzo4web/Javascript-Lab/tree/main/Projects/HackerNews"
+    },
+    {
+      "keywords": [
+        "Gatsby",
+        "React",
+        "GraphQL",
+        "Contentful CMS"
+      ],
+      "url": "https://renzo4web.me/",
+      "name": "Portfolio ",
+      "description": "Mi porfolio utilizando JamStack"
+    },
+    {
+      "keywords": [
+        "Javascript, SASS, Soundclound API"
+      ],
+      "name": "Musicon Player",
+      "url": "https://github.com/renzo4web/Musicon-Player",
+      "description": "App para streamear musica de Sounclound, con reproductor escrito en Javascript vanilla."
+    },
+    {
+      "keywords": [
+        "Javascript",
+        "IMDB API"
+      ],
+      "name": "Guess the movie rating",
+      "url": "https://github.com/renzo4web/APIs-Projects/tree/main/Guess-IMdbRating",
+      "description": "Adivina la puntuación de películas aleatorias, para jugar con amigos o solo."
+    }
+  ],
+  "awards": [
+    {
+      "title": "Espanol",
+      "date": "Nativo",
+      "awarder": "",
+      "summary": ""
+    },
+    {
+      "title": "Ingles",
+      "date": "Intermedio"
+    }
+  ],
+  "sections": [
+    "templates",
+    "profile",
+    "work",
+    "skills",
+    "projects",
+    "education",
+    "awards"
+  ]
+}
