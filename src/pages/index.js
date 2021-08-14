@@ -1,16 +1,12 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { FaReact } from '@react-icons/all-files/fa/FaReact'
-import { FaSass } from '@react-icons/all-files/fa/FaSass'
-import { SiWebpack } from '@react-icons/all-files/si/SiWebpack'
-import { SiGatsby } from '@react-icons/all-files/si/SiGatsby'
-import { SiStyledComponents } from '@react-icons/all-files/si/SiStyledComponents'
-import { SiNodeDotJs } from '@react-icons/all-files/si/SiNodeDotJs'
-
 import Layout from '../components/layout'
-import Contact from '../components/contact'
 import SEO from '../components/seo'
 import Grid from '../components/grid'
+import { Heading, Text, Box, Button, Badge, Tooltip, useColorModeValue } from '@chakra-ui/react'
+import Highlights from '../components/Highlights'
+import UnderlinedText from '../components/ui/UnderlineText'
+import Titles from '../components/ui/Titles'
 
 // Create React componenet
 
@@ -34,78 +30,58 @@ const HomePage = () => {
     allContentfulProject: { edges: projects },
   } = data
 
+  const bgBadge = useColorModeValue('black', 'white')
+
   return (
     <Layout>
       {/*START CONTENT*/}
       <SEO title="Home" description="@renzo4web Froentend Developer" />
-      <div className="welcome">
-        <h1 className="heading-title">
-          Hi, I'm Renzo <span className="heading-emoji">👋</span>
-        </h1>
-        <p>
-          <span className="flash" data-wenk="At the moment junior 👶">
-            Frontend Developer
-          </span>{' '}
-          powered by coffee ☕ living in <span data-wenk="Mendoza">Argentina🌎.</span>
-        </p>
-        <p>
+      <Box as="section" mt="2em" textAlign="left">
+        <Text
+          as="h1"
+          bgGradient="linear(to-r, teal.500,green.500)"
+          bgClip="text"
+          fontSize="4xl"
+          fontWeight="extrabold"
+        >
+          Hi, I'm Renzo
+        </Text>{' '}
+        <marquee>
+          <Text mt="1em" fontWeight="bold" fontStyle="italic">
+            <Tooltip label="At the moment junior 👶">
+              <Text as="span" className="flash">
+                Frontend Developer
+              </Text>
+            </Tooltip>{' '}
+            powered by coffee ☕ living in <Tooltip label="Mendoza">Argentina🌎.</Tooltip>
+          </Text>
+        </marquee>
+        <Text fontSize={['2xl', '3xl']} mt={2} fontWeight="regular" lineHeight="1.4">
           With a background in product design, in other words I went to art college but ended up as
           a programmer. Currently exploring new opportunities and side projects.
-        </p>
-        <p>
+        </Text>
+        <Text fontSize={['2xl', '3xl']} mt={2} fontWeight="regular" lineHeight="1.4">
           Right now I'm focusing on learning more about{' '}
-          <span data-wenk="The king of the web" className="javascript-txt">
-            JavaScript
-          </span>
-          <span data-wenk="Is it just a trend?" className="react-txt">
+          <Badge p={1} color="yellow.500" fontSize="0.8em" bg={bgBadge}>
+            Javascript
+          </Badge>
+          {', '}
+          <Badge bg={bgBadge} p={1} fontSize="0.8em" color="cyan.400">
             React
-          </span>
+          </Badge>
           . Hoping one day evolve into the mythical
           <span data-wenk="if there is such a thing">✨full-stack developer✨.</span>
-        </p>
-        <p
-          data-wenk-pos="bottom"
-          data-wenk="Technologies I like to work with"
-          className="technologies"
-        >
-          <span data-wenk="Webpack">
-            <SiWebpack />
-          </span>
-          <span data-wenk="Gatsby">
-            <SiGatsby />
-          </span>
-          <span data-wenk="React">
-            <FaReact />
-          </span>
-          <span data-wenk="Node Js">
-            <SiNodeDotJs />
-          </span>
-          <span data-wenk="Styled Components">
-            <SiStyledComponents />
-          </span>
-          <span data-wenk="Sass">
-            <FaSass />
-          </span>
-        </p>
-        <hr />
-      </div>
-      <h2>Projects</h2>
+        </Text>
+      </Box>
+      <Highlights />
 
-      <Grid list={projects} />
-
-      <h4 className="projects-link btn-cta">
-        <Link to="/projects">More Projects take a look &rarr;</Link>
-      </h4>
-
-      <Contact />
-
-      <div className="container marquee">
-        <div>
-          That's all Folks!
-          😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀😁🤓👽🤖🤩👀👁🦴👍👏🥶🎬🎧🎨🎮🎸💾💽💻📸📀
-          That's all Folks!
-        </div>{' '}
-      </div>
+      <Box as="section">
+        <Titles>Projects</Titles>
+        <Grid list={projects} />
+        <Button mt={2} as="p" variant="outline">
+          <Link to="/projects">More Projects take a look </Link>
+        </Button>
+      </Box>
 
       {/*END CONTENT*/}
     </Layout>

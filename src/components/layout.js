@@ -2,18 +2,31 @@ import React from 'react'
 
 import Footer from './footer'
 import Header from './header'
-import Head from './head'
 import '../styles/index.scss'
-import { container, content } from './layout.module.scss'
+import { Box, ChakraProvider, Flex, useColorModeValue } from '@chakra-ui/react'
+import theme from './ui/theme'
 
 const Layout = ({ pageTitle, children }) => {
   return (
-    <div className={container}>
-      <link rel="stylesheet" href="https://unpkg.com/wenk/dist/wenk.css"></link>
-      <Header activePage={pageTitle} />
-      <main className={content}>{children}</main>
-      <Footer />
-    </div>
+    <ChakraProvider theme={theme} resetCSS>
+      <Flex
+        as="div"
+        direction="column"
+        textAlign="center"
+        fontSize="xl"
+        w={['90%', '85%', '80%']}
+        maxW={850}
+        mx="auto"
+        overflowX="hidden"
+      >
+        <link rel="stylesheet" href="https://unpkg.com/wenk/dist/wenk.css"></link>
+        <Header activePage={pageTitle} />
+        <Box flexGrow="2" mt="auto" as="main">
+          {children}
+        </Box>
+        <Footer />
+      </Flex>
+    </ChakraProvider>
   )
 }
 

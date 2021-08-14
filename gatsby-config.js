@@ -13,6 +13,21 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: '@chakra-ui/gatsby-plugin',
+      options: {
+        /**
+         * @property {boolean} [resetCSS=true]
+         * if false, this plugin will not use `<CSSReset />
+         */
+        resetCSS: true,
+        /**
+         * @property {boolean} [isUsingColorMode=true]
+         * if false, this plugin will not use <ColorModeProvider />
+         */
+        isUsingColorMode: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Renzo4web',
@@ -33,7 +48,7 @@ module.exports = {
             sizes: `512x512`,
             type: `image/png`,
           },
-        ], 
+        ],
       },
     },
     {
@@ -48,10 +63,10 @@ module.exports = {
       options: {
         fonts: [
           `Poppins\:300,400,400i,700`,
-          `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
+          `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
         ],
-        display: 'swap'
-      }
+        display: 'swap',
+      },
     },
     `gatsby-plugin-sass`,
   ],

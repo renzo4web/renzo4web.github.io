@@ -5,6 +5,8 @@ import SEO from '../components/seo'
 import Contact from '../components/contact'
 
 import { box, container } from './run.module.scss'
+import { UnorderedList } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 const Run = () => {
   const username = 'renzo4web'
   const sites = [
@@ -20,8 +22,8 @@ const Run = () => {
       url: 'https://www.frontendmentor.io/profile/w3renzo',
     },
     {
-      name: 'dev.to',
-      url: 'https://dev.to/renzo4web',
+      name: 'Poliwork',
+      url: 'https://www.polywork.com/renzo4web',
     },
   ]
   return (
@@ -30,20 +32,20 @@ const Run = () => {
       <img src={`https://github.com/renzo4web.png?size=100`} alt={`${username} avatar`} />
       <h1>@{username}</h1>
       <Contact />
-      <ul>
+      <UnorderedList m={0}>
         {sites.map(({ name, url, local }) => (
-          <li className={box} key={url}>
+          <li style={{ listStyle: 'none' }} className={box} key={url}>
             {local ? (
               <Link to={url}>{name}</Link>
             ) : (
               <a href={url}>
-                {'> '}
                 {name}
+                <ExternalLinkIcon ml={2} />
               </a>
             )}
           </li>
         ))}
-      </ul>
+      </UnorderedList>
     </div>
   )
 }

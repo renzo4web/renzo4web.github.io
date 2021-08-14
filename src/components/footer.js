@@ -1,7 +1,8 @@
 import React from 'react'
 import { graphql, useStaticQuery, Link } from 'gatsby'
 
-import { footer } from './footer.module.scss'
+import { Box, Flex, Text } from '@chakra-ui/react'
+import Contact from './contact'
 
 const Footer = ({ children }) => {
   const {
@@ -20,12 +21,24 @@ const Footer = ({ children }) => {
   `)
 
   return (
-    <footer className={footer}>
-      {children}
-      <p>Crafted By {author} © 2021</p>
-      <p>That's it. Seeya later friend ¯\_(ツ)_/¯</p>
-      <Link to="/thanks">Thanks!!!</Link>
-    </footer>
+    <Box
+      borderTopLeftRadius="2em"
+      borderTopRightRadius="2em"
+      as="footer"
+      py="1em"
+      mt="auto"
+      boxShadow={'xl'}
+      width="100%"
+      zIndex="55"
+    >
+      <Contact />
+      <Flex direction={['column', 'row']} w="100%" alignItems="center" justifyContent="center">
+        {children}
+        <Text mr={['0', '20px']}>Crafted By {author} © 2021</Text>
+        <Text mr={['0', '20px']}>That's it. Seeya later friend ¯\_(ツ)_/¯</Text>
+        <Link to="/thanks">Thanks!!!</Link>
+      </Flex>
+    </Box>
   )
 }
 

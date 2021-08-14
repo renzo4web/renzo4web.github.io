@@ -4,12 +4,13 @@ import { SiLinkedin } from '@react-icons/all-files/si/SiLinkedin'
 import { SiGithub } from '@react-icons/all-files/si/SiGithub'
 import { HiOutlineMail } from '@react-icons/all-files/hi/HiOutlineMail'
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter'
+import { Center, HStack, IconButton } from '@chakra-ui/react'
 
 const Contact = () => {
   return (
-    <section className="contact">
-      <ul>
-        <li>
+    <Center my={4}>
+      <HStack spacing="1em">
+        <IconButton>
           <a
             title="GitHub Profile"
             tabIndex="1"
@@ -18,8 +19,8 @@ const Contact = () => {
           >
             <SiGithub />
           </a>
-        </li>
-        <li>
+        </IconButton>
+        <IconButton>
           <a
             tabIndex="2"
             title="Twitter Profile"
@@ -28,8 +29,8 @@ const Contact = () => {
           >
             <SiTwitter />
           </a>
-        </li>
-        <li>
+        </IconButton>
+        <IconButton>
           <a
             title="Linkedin Profile"
             tabIndex="3"
@@ -38,16 +39,13 @@ const Contact = () => {
           >
             <SiLinkedin />
           </a>
-        </li>
-        <li>
-          <a title="My Email" tabIndex="4" target="_blank" href="mailto:renzobarrios@aol.com">
-            <HiOutlineMail />
-          </a>
-        </li>
-      </ul>
-    </section>
+        </IconButton>
+        <IconButton icon={<HiOutlineMail />}>
+          <a title="My Email" tabIndex="4" target="_blank" href="mailto:renzobarrios@aol.com"></a>
+        </IconButton>
+      </HStack>
+    </Center>
   )
 }
-
 
 export default Contact
