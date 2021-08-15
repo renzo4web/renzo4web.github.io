@@ -4,6 +4,16 @@ body {
   overflow-x: hidden;
 font-family: 'Poppins', sans-serif;
 }
+
+.waveBackground {
+position: absolute;
+  background-size: "100%";
+  background-position: top;
+background-image: url("../images/svg.png");
+z-index: 0;
+}
+
+
 @keyframes flash {
   from {
     color: #4cd964;

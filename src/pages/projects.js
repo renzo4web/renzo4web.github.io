@@ -48,7 +48,7 @@ const ProjectsPage = () => {
       <Grid
         justifyContent="center"
         mb="2em"
-        templateColumns="repeat(auto-fit, minmax(350px,1fr))"
+        templateColumns={['repeat(auto-fit,minmax(250px,1fr))', '1fr 1fr']}
         gap={6}
         role="grid"
       >

@@ -3,9 +3,8 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Grid from '../components/grid'
-import { Heading, Text, Box, Button, Badge, Tooltip, useColorModeValue } from '@chakra-ui/react'
+import { Text, Box, Button, Badge, Tooltip, useColorModeValue } from '@chakra-ui/react'
 import Highlights from '../components/Highlights'
-import UnderlinedText from '../components/ui/UnderlineText'
 import Titles from '../components/ui/Titles'
 
 // Create React componenet

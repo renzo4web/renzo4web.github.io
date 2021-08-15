@@ -20,9 +20,14 @@ const Grid = ({ list, withImg }) => {
     <GridUI
       my={7}
       justifyContent="center"
-      templateColumns="repeat(auto-fit,minmax(350px,1fr))"
+      templateColumns={[
+        'repeat(auto-fit,minmax(250px,1fr))',
+        ,
+        'repeat(auto-fit,minmax(350px,1fr))',
+      ]}
       gap={4}
       role="grid"
+      px={3}
     >
       {list.map(({ node }) => {
         if (!node) {
@@ -30,7 +35,7 @@ const Grid = ({ list, withImg }) => {
         }
 
         return (
-          <MotionBox m={0} w="100%" whileHover={{ y: -5 }} key={node.id}>
+          <MotionBox m={0} whileHover={{ y: -5 }} key={node.id}>
             <ScaleFade initialScale={0.9} in={true}>
               <Box
                 h="100%"
