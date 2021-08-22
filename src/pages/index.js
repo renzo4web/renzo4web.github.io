@@ -3,9 +3,17 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Grid from '../components/grid'
-import { Text, Box, Button, Badge, Tooltip, useColorModeValue } from '@chakra-ui/react'
+import {
+  Text,
+  Box,
+  Button,
+  Badge,
+  Tooltip,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import Highlights from '../components/Highlights'
 import Titles from '../components/ui/Titles'
+import CardImg from '../components/CardImg'
 
 // Create React componenet
 
@@ -52,14 +60,26 @@ const HomePage = () => {
                 Frontend Developer
               </Text>
             </Tooltip>{' '}
-            powered by coffee ☕ living in <Tooltip label="Mendoza">Argentina🌎.</Tooltip>
+            powered by coffee ☕ living in{' '}
+            <Tooltip label="Mendoza">Argentina🌎.</Tooltip>
           </Text>
         </marquee>
-        <Text fontSize={['2xl', '3xl']} mt={2} fontWeight="regular" lineHeight="1.4">
-          With a background in product design, in other words I went to art college but ended up as
-          a programmer. Currently exploring new opportunities and side projects.
+        <Text
+          fontSize={['2xl', '3xl']}
+          mt={2}
+          fontWeight="regular"
+          lineHeight="1.4"
+        >
+          With a background in product design, in other words I went to art
+          college but ended up as a programmer. Currently exploring new
+          opportunities and side projects.
         </Text>
-        <Text fontSize={['2xl', '3xl']} mt={2} fontWeight="regular" lineHeight="1.4">
+        <Text
+          fontSize={['2xl', '3xl']}
+          mt={2}
+          fontWeight="regular"
+          lineHeight="1.4"
+        >
           Right now I'm focusing on learning more about{' '}
           <Badge p={1} color="yellow.500" fontSize="0.8em" bg={bgBadge}>
             Javascript
@@ -69,10 +89,14 @@ const HomePage = () => {
             React
           </Badge>
           . Hoping one day evolve into the mythical
-          <span data-wenk="if there is such a thing">✨full-stack developer✨.</span>
+          <span data-wenk="if there is such a thing">
+            ✨full-stack developer✨.
+          </span>
         </Text>
       </Box>
       <Highlights />
+
+      <CardImg />
 
       <Box as="section">
         <Titles>Projects</Titles>
