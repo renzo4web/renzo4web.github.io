@@ -15,6 +15,7 @@ import {
   PopoverTrigger,
   PopoverContent,
   HStack,
+  Avatar,
 } from '@chakra-ui/react'
 import { QuestionIcon } from '@chakra-ui/icons'
 import Highlights from '../components/Highlights'
