@@ -47,7 +47,12 @@ const Header = ({ activePage }) => {
         maxW={800}
         mx="auto"
       >
-        <Avatar as={Link} to="/" name="Renzo" src="https://github.com/renzo4web.png?size=100" />
+        <Avatar
+          as={Link}
+          to="/"
+          name="Renzo"
+          src="https://github.com/renzo4web.png?size=100"
+        />
         <Flex role="navigation">{createLinksPages(activePage)}</Flex>
         <ThemeToggle />
       </Flex>
@@ -56,7 +61,7 @@ const Header = ({ activePage }) => {
 }
 
 const createLinksPages = activePage => {
-  const currentPages = ['home', 'projects']
+  const currentPages = ['home', 'projects', 'about']
 
   console.log(activePage)
   return currentPages.map(titlePage => {

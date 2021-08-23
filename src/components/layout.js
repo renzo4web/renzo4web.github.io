@@ -10,8 +10,9 @@ import { animationChange } from './layout.module.scss'
 
 const Layout = ({ pageTitle, children }) => {
   return (
-    <ChakraProvider theme={theme} resetCSS>
+    <ChakraProvider h="100%" theme={theme} resetCSS>
       <Box
+        h="100%"
         bgImage={'url(../images/wave.svg)'}
         bgGradient={() =>
           useColorModeValue(
@@ -28,10 +29,20 @@ const Layout = ({ pageTitle, children }) => {
           w={['90%', '85%', '80%']}
           maxW={850}
           mx="auto"
+          h="100%"
         >
-          <link rel="stylesheet" href="https://unpkg.com/wenk/dist/wenk.css"></link>
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/wenk/dist/wenk.css"
+          ></link>
           <Header activePage={pageTitle} />
-          <Box className={animationChange} flexGrow="2" mt="auto" as="main">
+          <Box
+            h="100%"
+            className={animationChange}
+            flexGrow="2"
+            mt="auto"
+            as="main"
+          >
             {children}
           </Box>
           <Footer />

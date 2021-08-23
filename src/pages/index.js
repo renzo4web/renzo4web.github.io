@@ -9,11 +9,19 @@ import {
   Button,
   Badge,
   Tooltip,
+  Heading,
   useColorModeValue,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  HStack,
 } from '@chakra-ui/react'
+import { QuestionIcon } from '@chakra-ui/icons'
 import Highlights from '../components/Highlights'
 import Titles from '../components/ui/Titles'
 import CardImg from '../components/CardImg'
+import VirtualExperiencePrograms from '../components/VirtualExperiencePrograms'
+import AboutMe from '../components/AboutMe'
 
 // Create React componenet
 
@@ -28,6 +36,7 @@ const HomePage = () => {
             title
             description
             technologiesUsed
+            linkDemo
           }
         }
       }
@@ -65,20 +74,21 @@ const HomePage = () => {
           </Text>
         </marquee>
         <Text
-          fontSize={['2xl', '3xl']}
+          fontSize={['xl', '2xl']}
           mt={2}
           fontWeight="regular"
-          lineHeight="1.4"
+          lineHeight="1.5"
         >
-          With a background in product design, in other words I went to art
-          college but ended up as a programmer. Currently exploring new
-          opportunities and side projects.
+          Passionate about all the technologies that are part of the web, and
+          how with the help of these we can create applications that have a
+          social impact and help people. Currently looking for an opportunity to
+          break into the industry and show what I am capable of.
         </Text>
         <Text
-          fontSize={['2xl', '3xl']}
+          fontSize={['xl', '2xl']}
           mt={2}
           fontWeight="regular"
-          lineHeight="1.4"
+          lineHeight="1.5"
         >
           Right now I'm focusing on learning more about{' '}
           <Badge p={1} color="yellow.500" fontSize="0.8em" bg={bgBadge}>
@@ -96,7 +106,7 @@ const HomePage = () => {
       </Box>
       <Highlights />
 
-      <CardImg />
+      <VirtualExperiencePrograms />
 
       <Box as="section">
         <Titles>Projects</Titles>

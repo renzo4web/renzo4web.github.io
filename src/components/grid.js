@@ -9,9 +9,11 @@ import {
   Text,
   Button,
   Tooltip,
+  Link as LinkUI,
+  HStack,
 } from '@chakra-ui/react'
 import { MotionBox } from './ui/motion'
-import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import BadgeGroup from './BadgeGroup'
 
 const Grid = ({ list, withImg }) => {
@@ -52,28 +54,50 @@ const Grid = ({ list, withImg }) => {
                 }}
               >
                 <BadgeGroup arr={node.technologiesUsed.split(',')} />
-                <Text fontWeight="bold" color="green.500" mt={2} lineHeight={1.2}>
+                <Text
+                  fontWeight="bold"
+                  color="green.500"
+                  mt={2}
+                  lineHeight={1.2}
+                >
                   {node.title}
                 </Text>
-                <Tooltip label={node.description.length > 65 && node.description}>
+                <Tooltip
+                  label={node.description.length > 65 && node.description}
+                >
                   <Text my={2} fontSize="md" maxWidth="400px" isTruncated>
                     {node.description}
                   </Text>
                 </Tooltip>
-                <Link to={`/project/${node.slug}`}>
-                  <Button
-                    aria-label={`Read more about ${node.title}`}
-                    as="p"
-                    variant="outline"
-                    _hover={{
-                      bgGradient: 'linear(to-r, teal.500,green.500)',
-                      border: 'none',
-                    }}
-                    rightIcon={<ArrowForwardIcon />}
-                  >
-                    Read More
-                  </Button>
-                </Link>
+
+                <HStack>
+                  <Link to={`/project/${node.slug}`}>
+                    <Button
+                      mr={5}
+                      aria-label={`Read more about ${node.title}`}
+                      as="p"
+                      variant="outline"
+                      _hover={{
+                        bgGradient: 'linear(to-r, teal.500,green.500)',
+                        border: 'none',
+                      }}
+                      rightIcon={<ArrowForwardIcon />}
+                    >
+                      Read More
+                    </Button>
+                  </Link>
+
+                  <LinkUI href={node.linkDemo}>
+                    <Button
+                      aria-label={`Read more about ${node.title}`}
+                      as="p"
+                      variant="link"
+                      rightIcon={<ExternalLinkIcon />}
+                    >
+                      Live
+                    </Button>
+                  </LinkUI>
+                </HStack>
               </Box>
             </ScaleFade>
           </MotionBox>

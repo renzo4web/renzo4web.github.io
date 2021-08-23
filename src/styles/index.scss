@@ -2,17 +2,16 @@ body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .waveBackground {
-position: absolute;
-  background-size: "100%";
+  position: absolute;
+  background-size: '100%';
   background-position: top;
-background-image: url("../images/svg.png");
-z-index: 0;
+  background-image: url('../images/svg.png');
+  z-index: 0;
 }
-
 
 @keyframes flash {
   from {

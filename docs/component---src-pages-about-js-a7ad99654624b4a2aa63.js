@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgatsby_starter_hello_world=self.webpackChunkgatsby_starter_hello_world||[]).push([[682],{5518:function(e,t,l){l.r(t);var r=l(7294),n=l(2160),o=l(3751);t.default=function(){return r.createElement(n.Z,null,r.createElement(o.Z,{title:"About",description:"@renzo4web Froentend Developer"}),r.createElement("h1",null," ABout "))}}}]);
-//# sourceMappingURL=component---src-pages-about-js-a7ad99654624b4a2aa63.js.map
