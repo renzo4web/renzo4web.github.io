@@ -17,7 +17,6 @@ import { ArrowForwardIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import BadgeGroup from './BadgeGroup'
 
 const Grid = ({ list, withImg }) => {
-  console.log(list)
   return (
     <GridUI
       my={7}
@@ -80,6 +79,7 @@ const Grid = ({ list, withImg }) => {
                       _hover={{
                         bgGradient: 'linear(to-r, teal.500,green.500)',
                         border: 'none',
+                        color: 'gray.100',
                       }}
                       rightIcon={<ArrowForwardIcon />}
                     >

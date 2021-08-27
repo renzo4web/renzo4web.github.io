@@ -5,7 +5,16 @@ import SEO from '../components/seo'
 import Img from 'gatsby-image'
 
 import { Link as gatsbyLink, graphql, useStaticQuery } from 'gatsby'
-import { Box, Button, Grid, Link, Heading, Text, Flex, useColorModeValue } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Grid,
+  Link,
+  Heading,
+  Text,
+  Flex,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { LinkIcon } from '@chakra-ui/icons'
 import { MotionBox } from '../components/ui/motion'
 import BadgeGroup from '../components/BadgeGroup'
@@ -16,7 +25,7 @@ import Titles from '../components/ui/Titles'
 const ProjectsPage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulProject {
+      allContentfulProject(sort: { order: DESC, fields: createdAt }) {
         edges {
           node {
             id
@@ -54,7 +63,13 @@ const ProjectsPage = () => {
       >
         {projects.map(({ node: project }) => {
           return (
-            <MotionBox role="gridcell" m={0} w="100%" whileHover={{ y: -5 }} key={project.id}>
+            <MotionBox
+              role="gridcell"
+              m={0}
+              w="100%"
+              whileHover={{ y: -5 }}
+              key={project.id}
+            >
               <Box
                 key={project.id}
                 overflow="hidden"
@@ -75,7 +90,11 @@ const ProjectsPage = () => {
                   {project.heroImg && (
                     <Box w="100%" maxW={['100%', '150px']} height="100%">
                       <Img
-                        style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+                        style={{
+                          height: '100%',
+                          width: '100%',
+                          objectFit: 'cover',
+                        }}
                         fluid={project.heroImg.fluid}
                       />
                     </Box>

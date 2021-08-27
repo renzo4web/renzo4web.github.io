@@ -29,7 +29,10 @@ import AboutMe from '../components/AboutMe'
 const HomePage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulProject(filter: { tags: { eq: "selected" } }) {
+      allContentfulProject(
+        sort: { order: DESC, fields: createdAt }
+        filter: { tags: { eq: "selected" } }
+      ) {
         edges {
           node {
             id
