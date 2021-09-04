@@ -10,39 +10,44 @@ const Contact = () => {
   return (
     <Center my={4}>
       <HStack spacing="1em">
-        <IconButton>
-          <a
-            title="GitHub Profile"
-            tabIndex="1"
-            target="_blank"
-            href="https://github.com/renzo4web"
-          >
+        <a
+          title="GitHub Profile"
+          tabIndex="1"
+          target="_blank"
+          href="https://github.com/renzo4web"
+        >
+          <IconButton as="span">
             <SiGithub />
-          </a>
-        </IconButton>
-        <IconButton>
-          <a
-            tabIndex="2"
-            title="Twitter Profile"
-            target="_blank"
-            href="https://twitter.com/renzo4web"
-          >
+          </IconButton>
+        </a>
+        <a
+          tabIndex="2"
+          title="Twitter Profile"
+          target="_blank"
+          href="https://twitter.com/renzo4web"
+        >
+          <IconButton as="span">
             <SiTwitter />
-          </a>
-        </IconButton>
-        <IconButton>
-          <a
-            title="Linkedin Profile"
-            tabIndex="3"
-            target="_blank"
-            href="https://www.linkedin.com/in/renzobarrios/"
-          >
+          </IconButton>
+        </a>
+        <a
+          title="Linkedin Profile"
+          tabIndex="3"
+          target="_blank"
+          href="https://www.linkedin.com/in/renzobarrios/"
+        >
+          <IconButton as="span">
             <SiLinkedin />
-          </a>
-        </IconButton>
-        <IconButton icon={<HiOutlineMail />}>
-          <a title="My Email" tabIndex="4" target="_blank" href="mailto:renzobarrios@aol.com"></a>
-        </IconButton>
+          </IconButton>
+        </a>
+        <a
+          title="My Email"
+          tabIndex="4"
+          target="_blank"
+          href="mailto:renzobarrios@aol.com"
+        >
+          <IconButton as="span" icon={<HiOutlineMail />}></IconButton>
+        </a>
       </HStack>
     </Center>
   )

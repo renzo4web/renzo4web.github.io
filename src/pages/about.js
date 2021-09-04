@@ -7,7 +7,6 @@ const About = () => {
   return (
     <Layout>
       <SEO title="About" description="@renzo4web Froentend Developer" />
-
       <AboutMe />
     </Layout>
   )
