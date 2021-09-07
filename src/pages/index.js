@@ -16,13 +16,15 @@ import {
   PopoverContent,
   HStack,
   Avatar,
+  Link as ChakraLink,
 } from '@chakra-ui/react'
-import { QuestionIcon } from '@chakra-ui/icons'
+import { QuestionIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import Highlights from '../components/Highlights'
 import Titles from '../components/ui/Titles'
 import CardImg from '../components/CardImg'
 import VirtualExperiencePrograms from '../components/VirtualExperiencePrograms'
 import AboutMe from '../components/AboutMe'
+import Mobile from '../components/Mobile'
 
 // Create React componenet
 
@@ -120,7 +122,38 @@ const HomePage = () => {
         </Button>
       </Box>
 
-      {/*END CONTENT*/}
+      <Box as="section">
+        <Mobile />
+      </Box>
+
+      <Box
+        textAlign="left"
+        bg={() => useColorModeValue('gray.100', '#1e2533')}
+        p={3}
+        borderRadius={10}
+        mx={[0, 0, 10]}
+        my={'3em'}
+      >
+        <Heading fontSize="xl" color="teal">
+          FrontendMentor
+        </Heading>
+        <Text fontSize="md" my={2}>
+          What is FrontendMentor ? a website for gaining real experience in
+          building websites and providing code reviews.
+        </Text>
+        <Text fontSize="md" my={2}>
+          I like to help and receive suggestions and criticism from developers
+          from different countries and different levels, it is what has helped
+          me the most to progress.{' '}
+          <ChakraLink
+            href="https://www.frontendmentor.io/profile/w3renzo"
+            isExternal
+            textAlign={'center'}
+          >
+            <ExternalLinkIcon mx="2px" />
+          </ChakraLink>
+        </Text>
+      </Box>
     </Layout>
   )
 }
