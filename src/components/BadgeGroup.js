@@ -15,6 +15,8 @@ export const colorTec = {
   REDUX: '#794AC0',
   CHAKRAUI: '#43C7C0',
   FIREBASE: '#FFCB2B',
+  HEROKU: '#624887',
+  MERN: '#ff9375',
 }
 
 const BadgeGroup = ({ arr = [] }) => {
@@ -24,7 +26,7 @@ const BadgeGroup = ({ arr = [] }) => {
         {arr.map(tec => {
           const hexCode = colorTec[tec.toUpperCase().trim()] || '#2D3748'
           const colorText =
-            parseInt(hexCode.replace('#', ''), 16) > 0xffffff / 2
+            parseInt(hexCode.replace('#', ''), 16) > 0xffffff / 1.2
               ? 'gray.900'
               : 'gray.100'
           return (
@@ -35,6 +37,8 @@ const BadgeGroup = ({ arr = [] }) => {
               mr={2}
               mb={1}
               color={colorText}
+              border={tec.toUpperCase() === 'MERN' && '1px'}
+              borderColor={tec.toUpperCase() === 'MERN' && 'red'}
               bg={
                 colorTec[tec.toUpperCase().trim()]
                   ? colorTec[tec.toUpperCase().trim()]
