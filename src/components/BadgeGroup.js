@@ -32,7 +32,6 @@ const BadgeGroup = ({ arr = [] }) => {
           return (
             <Badge
               key={tec.trim()}
-              aria-labelledby={tec}
               role="complementary"
               mr={2}
               mb={1}

@@ -1,4 +1,5 @@
-body {
+body,
+html {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
@@ -47,4 +48,12 @@ body {
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
+}
+
+#___gatsby {
+  height: 100vh;
+}
+
+#gatsby-focus-wrapper {
+  height: 100%;
 }

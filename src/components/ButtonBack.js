@@ -6,7 +6,7 @@ import React from 'react'
 const ButtonBack = () => {
   return (
     <>
-      <Link to="/projects">
+      <Link to="/">
         <Button variant="outline" leftIcon={<ArrowLeftIcon />} as="span">
           Go Back
         </Button>

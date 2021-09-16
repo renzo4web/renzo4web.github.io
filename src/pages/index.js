@@ -117,14 +117,15 @@ const HomePage = () => {
       <Box as="section">
         <Titles>Projects</Titles>
         <Grid list={projects} />
-        <Button mt={2} as="p" variant="outline">
-          <Link to="/projects">More Projects take a look </Link>
-        </Button>
       </Box>
 
       <Box as="section">
         <Mobile />
       </Box>
+
+      <Button mt={2} as="p" variant="outline">
+        <Link to="/projects">More Projects take a look </Link>
+      </Button>
 
       <Box
         textAlign="left"
@@ -142,16 +143,16 @@ const HomePage = () => {
           building websites and providing code reviews.
         </Text>
         <Text fontSize="md" my={2}>
-          I like to help and receive suggestions and criticism from developers
-          from different countries and different levels, it is what has helped
-          me the most to progress.{' '}
+          take a look at my{' '}
           <ChakraLink
             href="https://www.frontendmentor.io/profile/w3renzo"
             isExternal
+            color="teal"
             textAlign={'center'}
           >
-            <ExternalLinkIcon mx="2px" />
-          </ChakraLink>
+            Frontend Mentor
+          </ChakraLink>{' '}
+          profile to see the projects I've done.
         </Text>
       </Box>
     </Layout>
