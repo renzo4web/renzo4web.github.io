@@ -112,8 +112,6 @@ const HomePage = () => {
       </Box>
       <Highlights />
 
-      <VirtualExperiencePrograms />
-
       <Box as="section">
         <Titles>Projects</Titles>
         <Grid list={projects} />
@@ -123,9 +121,7 @@ const HomePage = () => {
         <Mobile />
       </Box>
 
-      <Button mt={2} as="p" variant="outline">
-        <Link to="/projects">More Projects take a look </Link>
-      </Button>
+      <VirtualExperiencePrograms />
 
       <Box
         textAlign="left"
@@ -139,11 +135,12 @@ const HomePage = () => {
           FrontendMentor
         </Heading>
         <Text fontSize="md" my={2}>
-          What is FrontendMentor ? a website for gaining real experience in
-          building websites and providing code reviews.
+          What is FrontendMentor? It is a website where you are given a web
+          design and you have to implement and deploy it creating a fully
+          functional site.
         </Text>
         <Text fontSize="md" my={2}>
-          take a look at my{' '}
+          Take a look at my{' '}
           <ChakraLink
             href="https://www.frontendmentor.io/profile/w3renzo"
             isExternal
