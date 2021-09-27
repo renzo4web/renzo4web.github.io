@@ -17,6 +17,7 @@ export const colorTec = {
   FIREBASE: '#FFCB2B',
   HEROKU: '#624887',
   MERN: '#ff9375',
+  TYPESCRIPT: '#2F74C0',
 }
 
 const BadgeGroup = ({ arr = [] }) => {

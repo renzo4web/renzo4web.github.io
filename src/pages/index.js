@@ -97,8 +97,8 @@ const HomePage = () => {
           lineHeight="1.5"
         >
           Right now I'm focusing on learning more about{' '}
-          <Badge p={1} color="yellow.500" fontSize="0.8em" bg={bgBadge}>
-            Javascript
+          <Badge p={1} color="white" fontSize="0.8em" bg={'#2F74C0'}>
+            Typescript
           </Badge>
           {', '}
           <Badge bg={bgBadge} p={1} fontSize="0.8em" color="cyan.400">
