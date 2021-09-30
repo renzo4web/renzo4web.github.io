@@ -72,7 +72,7 @@ const HomePage = () => {
           <Text mt="1em" fontWeight="bold" fontStyle="italic">
             <Tooltip label="At the moment junior 👶">
               <Text as="span" className="flash">
-                Frontend Developer
+                Fullstack Developer
               </Text>
             </Tooltip>{' '}
             powered by coffee ☕ living in{' '}

@@ -18,6 +18,8 @@ export const colorTec = {
   HEROKU: '#624887',
   MERN: '#ff9375',
   TYPESCRIPT: '#2F74C0',
+  FORMIK: '#172B4D',
+  'MATERIAL-UI': '#007FFF',
 }
 
 const BadgeGroup = ({ arr = [] }) => {
