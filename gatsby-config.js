@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 let env = process.env.NODE_ENV || 'development'
 
 require('dotenv').config()
@@ -6,7 +7,7 @@ module.exports = {
   siteMetadata: {
     title: `Renzo4web`,
     author: 'Renzo',
-    description: `Frontend developer powered by cofee`,
+    description: `Fullstack Developer powered by coffee.`,
   },
   plugins: [
     `gatsby-plugin-sharp`,

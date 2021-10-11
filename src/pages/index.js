@@ -1,29 +1,20 @@
 import React from 'react'
-import { Link, graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Grid from '../components/grid'
 import {
   Text,
   Box,
-  Button,
   Badge,
   Tooltip,
   Heading,
   useColorModeValue,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  HStack,
-  Avatar,
   Link as ChakraLink,
 } from '@chakra-ui/react'
-import { QuestionIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import Highlights from '../components/Highlights'
 import Titles from '../components/ui/Titles'
-import CardImg from '../components/CardImg'
 import VirtualExperiencePrograms from '../components/VirtualExperiencePrograms'
-import AboutMe from '../components/AboutMe'
 import Mobile from '../components/Mobile'
 
 // Create React componenet
@@ -105,7 +96,7 @@ const HomePage = () => {
             React
           </Badge>
           . Hoping one day evolve into the mythical
-          <span data-wenk="if there is such a thing">
+          <span data-wenk="if there is such a thing" role="img">
             ✨full-stack developer✨.
           </span>
         </Text>

@@ -43,13 +43,19 @@ const Highlights = () => {
           <UnorderedList textAlign="left" paddingLeft={5} m={0}>
             <ListItem textAlign="left">
               <LinkList to="https://gist.github.com/renzo4web/0f91f5a1fd86c0837bd0ee367b1d1af7">
-                Understanding Javascript array methods, implementing them with Array.reduce()
+                Understanding Javascript array methods, implementing them with
+                Array.reduce()
               </LinkList>
             </ListItem>
 
             <ListItem>
               <LinkList to="https://collectednotes.com/renzo4web/promise-allsettled-is-great">
                 Promise.allSettled Is Great
+              </LinkList>
+            </ListItem>
+            <ListItem>
+              <LinkList to="https://github.com/renzo4web/super-coin">
+                Blockchain from scratch with NodeJS and Typescript
               </LinkList>
             </ListItem>
           </UnorderedList>
